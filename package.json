@@ -4,14 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "apphot": "webpack-dev-server --config webpack.app.config.js --content-base public/   --inline  --devtool eval --progress --colors",
-    "pchot": "webpack-dev-server --config webpack.pc.config.js --content-base public/   --inline --devtool eval --progress --colors",
-    "adminhot": "webpack-dev-server --config webpack.admin.config.js --content-base public/   --inline --devtool eval --progress --colors",
-    "apppub": "webpack --config webpack.app.config.js",
-    "appdev": "webpack --config webpack.app.config.js -d -w ",
-    "pcpub": "webpack --config webpack.pc.config.js",
-    "pcdev": "webpack --config webpack.pc.config.js --color --profile --display-modules -d -w",
-    "admindev": "webpack --config webpack.admin.config.js --color --profile -d "
+    "hot": "webpack-dev-server --config webpack.config.js --content-base public/ --inline --devtool eval --progress --colors",
+    "dev": "webpack --config webpack.config.js --color --profile -d -w"
   },
   "repository": {
     "type": "git",

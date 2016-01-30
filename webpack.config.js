@@ -8,7 +8,6 @@ var path=require('path');
 var ExtractTextPlugin=require('extract-text-webpack-plugin');
 //提取根据模板动态打包html文件
 var HtmlWebpackPlugin=require('html-webpack-plugin');
-
 var debug=true;
 var url='http://localhost';
 var entryConfig=[];
@@ -17,21 +16,21 @@ var plugin=[];
 if(debug){
     entryConfig=
         {
-            home: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/admin/entryW/app.js'],
+            app: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entryWebpack/app.js'],
             //home: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/admin/home.serverjs'],
             //page_1: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_1.serverjs'],
             //page_2: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_2.serverjs'],
         }
      ;
     output={
-        path: path.join(__dirname,"/public/admin/build"),
-        publicPath: "http://localhost:8080/admin/build/",
-        filename: "js/app.js"
+        path: path.join(__dirname,"/public/"),
+        publicPath: "http://localhost:8080/",
+        filename: "js/[name].js"
     };
     plugin=[
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.CommonsChunkPlugin('js/comment.js'),
-        new ExtractTextPlugin('css/app.css',{allChunks:true}),
+        //new webpack.optimize.CommonsChunkPlugin('js/comment.js'),
+        new ExtractTextPlugin('css/[name].css',{allChunks:true}),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
@@ -124,3 +123,22 @@ module.exports={
     },
     plugins: plugin
 };
+
+
+
+//entry:{
+//    p1:'./page1',
+//    p2:'./page2',
+//    p3:'./page3',
+//    ap1:'./admin/page1',
+//    ap2:'./admin/page2'
+//},
+//new webpack.optimize.CommonsChunkPlugin('js/comment.js'),
+// new CommonsChunkPlugin("admin-commons.js", ["ap1", "ap2"]),
+// new CommonsChunkPlugin("commons.js", ["p1", "p2", "admin-commons.js"])
+// 在不同页面用<script>标签引入如下js:
+// page1.html: commons.js, p1.js
+// page2.html: commons.js, p2.js
+// page3.html: p3.js
+// admin-page1.html: commons.js, admin-commons.js, ap1.js
+// admin-page2.html: commons.js, admin-commons.js, ap2.js

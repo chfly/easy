@@ -1,56 +1,31 @@
 var express = require('express');
 var router = express.Router();
-var React=require('react');
-var ReactDOMServer=require('react-dom/server');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'express' });
 });
-router.get('/admin', function(req, res, next) {
-    var data=[
-        {id:'1',user:'tom','sex':'man'},
-        {id:'2',user:'tom1','sex':'man'},
-        {id:'3',user:'tom2','sex':'man'},
-        {id:'4',user:'tom3','sex':'man'},
-        {id:'5',user:'tom4','sex':'man'}
-    ];
-    var Table=require('../src/admin/build/table/Table');
-    var App=React.createClass({displayName: "App",
-        render: function(){
-            return(
-                React.createElement("div", null,
-                    React.createElement(Table, {datas: this.props.data})
-                )
-            )
-        }
-    });
-    var reactHTML=ReactDOMServer.renderToString(React.createElement(App, {data: data}));
-    console.log(reactHTML);
+router.get('/app', function(req, res, next) {
+    var reactHTML=require('../src/build/server/app')();
+    //console.log(reactHTML);
     var html='<!doctype html>' +
           '<html>' +
           '<head>' +
           '<meta charset="utf-8">' +
+          '<title>同构</title>' +
           '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-          '<link rel="shortcut icon" href="/easy.ico">' +
-          '<link href="http://localhost:8080/admin/build/css/app.css" rel="stylesheet">' +
-          '<title>admin</title>' +
+          '<link rel="shortcut icon" href="http://localhost:8080/easy.ico">' +
+          '<link rel="stylesheet" href="http://localhost:8080/css/app.css" >' +
           '</head><body><div id="example">'
           +reactHTML+
-          '</div><script src="http://localhost:8080/admin/build/js/app.js"></script>'+
+          '</div><script src="http://localhost:8080/js/app.js"></script>'+
           '</body></html>';
-
-
     res.send(html);
+    //res.render('app', { reactHtml: reactHTML });
 });
-router.get('/app', function(req, res, next) {
-  res.render('app', { title: 'EASY' });
-})
-router.get('/pc', function(req, res, next) {
-  res.render('pc', { title: 'EASY' });
-});
-router.get('/page1', function(req, res, next) {
-  res.render('page1', { title: 'EASY' });
-});
+
+
+
 router.get('/getComments', function(req, res, next) {
   var Comment=db.getDoc('comment');
   var fields={_id:0,__v:0};

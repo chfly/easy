@@ -1,9 +1,6 @@
 
 var React=require('react');
-var ReactDOM=require('react-dom');
-require('jquery');
-require('bootstrap_js');
-require('bootstrap_css');
+var ReactDOMServer=require('react-dom/server');
 var data=[
     {id:'1',user:'tom','sex':'man'},
     {id:'2',user:'tom1','sex':'man'},
@@ -12,7 +9,7 @@ var data=[
     {id:'5',user:'tom4','sex':'man'},
     {id:'6',user:'tom4','sex':'man'},
     {id:'7',user:'tom4','sex':'man'},
-    {id:'8',user:'tom4','sex':'man'}
+    {id:'8',user:'tom8','sex':'man'}
 ];
 
 var Table=require('../component/table/Table');
@@ -25,4 +22,8 @@ var App=React.createClass({
         )
     }
 });
-ReactDOM.render(<App data={data}/>,document.getElementById('example'));
+var reactHTML=ReactDOMServer.renderToString(<App data={data}/>)
+console.log(reactHTML)
+module.exports=function(){
+    return reactHTML
+}

@@ -6,10 +6,13 @@ var data=[
     {id:'2',user:'tom1','sex':'man'},
     {id:'3',user:'tom2','sex':'man'},
     {id:'4',user:'tom3','sex':'man'},
-    {id:'5',user:'tom4','sex':'man'}
+    {id:'5',user:'tom4','sex':'man'},
+    {id:'6',user:'tom4','sex':'man'},
+    {id:'7',user:'tom4','sex':'man'},
+    {id:'8',user:'tom8','sex':'man'}
 ];
 
-var Table=require('../build/table/Table');
+var Table=require('../component/table/Table');
 var App=React.createClass({displayName: "App",
     render: function(){
         return(
@@ -20,4 +23,7 @@ var App=React.createClass({displayName: "App",
     }
 });
 var reactHTML=ReactDOMServer.renderToString(React.createElement(App, {data: data}))
-//console.log(reactHTML)
+console.log(reactHTML)
+module.exports=function(){
+    return reactHTML
+}

@@ -7,20 +7,20 @@ var gulp = require('gulp'),
     react=require('gulp-react');
 
 gulp.task('jsx',function(){
-  return gulp.src('./src/admin/component//**/*.js')
+  return gulp.src('./src/component//**/*.js')
        .pipe(react())
-       .pipe(gulp.dest('./src/admin/build/'))
+       .pipe(gulp.dest('./src/build/component/'))
         .pipe(notify({message:"jsx task compelete"}))
 });
-gulp.task('route',function(){
-   return gulp.src('./src/admin/entryR//**/*.js')
+gulp.task('server',function(){
+   return gulp.src('./src/entryServer//**/*.js')
         .pipe(react())
-        .pipe(gulp.dest('./src/admin/route/'))
-       .pipe(notify({message:"route task compelete"}))
+        .pipe(gulp.dest('./src/build/server/'))
+       .pipe(notify({message:"server task compelete"}))
 });
 
 gulp.task('test',function(callback){
-   return gulp.src('./src/admin/entry/app.js')
+   return gulp.src('./src/entryWebpack/app.js')
             .pipe(webpack({
            watch:true,
            module: {
@@ -34,20 +34,20 @@ gulp.task('test',function(callback){
                }]
            }
        }))
-            .pipe(gulp.dest('./src/admin/test/'))
+            .pipe(gulp.dest('./src/test/'))
     .pipe(notify({message:"test task compelete"}))
 });
 
 gulp.task('webpack',function(callback){
-    gulp.src('./src/admin/entryW//**/*.js')
-    .pipe(webpack(require('./webpack.admin.config')))
-    .pipe(gulp.dest('public/admin/build/'))
+    gulp.src('./src/entryWebpack//**/*.js')
+    .pipe(webpack(require('./webpack.config')))
+    .pipe(gulp.dest('public/'))
     .pipe(notify({message:"webpack task compelete"}))
 });
 gulp.task('watch',function(){
-    gulp.watch('./src/admin/component//**/*.js',['jsx','route','webpack']);
-    gulp.watch('./src/admin/entryR//**/*.js',['route']);
-    gulp.watch('./src/admin/entryW//**/*.js',['webpack'])
+    gulp.watch('./src/component//**/*.js',['jsx','server','webpack']);
+    gulp.watch('./src/entryServer//**/*.js',['server']);
+    gulp.watch('./src/entryWebpack//**/*.js',['webpack'])
 });
 
-gulp.task('default',['jsx','route','webpack']);
+gulp.task('default',['jsx','server','webpack']);
