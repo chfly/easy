@@ -83,12 +83,13 @@ var Box=React.createClass({displayName: "Box",
         return {data:this.props.data}
     },
     getComments:function(){
-        $.get('/app',function(docs,statu){
-            //if(docs.flag==200){
-            //    this.setState({data:docs.content})
-            //}else{
-            //    console.log('getCommits error')
-            //}
+        //$.get('/app',function(docs,statu){
+        $.get('/getComments',function(docs,statu){
+            if(docs.flag==200){
+                this.setState({data:docs.content})
+            }else{
+                console.log('getCommits error')
+            }
         }.bind(this))
     },
     handlerCommite:function(comment){
@@ -97,12 +98,13 @@ var Box=React.createClass({displayName: "Box",
             if(docs.flag==200){
                 //var comments=this.state.data.push(comment);
                 //this.setState({data:comments});
-                $.get('/app',function(docs,statu){
-                    //if(docs.flag==200){
-                    //    this.setState({data:docs.content})
-                    //}else{
-                    //    console.log('getCommits error')
-                    //}
+                //$.get('/app',function(docs,statu){
+                $.get('/getComments',function(docs,statu){
+                    if(docs.flag==200){
+                        this.setState({data:docs.content})
+                    }else{
+                        console.log('getCommits error')
+                    }
                 }.bind(this))
             }
         }.bind(this))
@@ -131,6 +133,12 @@ var App=React.createClass({displayName: "App",
     }
 });
 
+$.get('/getComments',function(docs,statu){
+    if(docs.flag==200){
+      var getServerData=docs.content;
+        ReactDOM.render(React.createElement(App, {data: getServerData}), document.getElementById('example'));
+    }else{
+        console.log('getCommits error')
+    }
+})
 
-
-ReactDOM.render(React.createElement(App, {data: []}), document.getElementById('example'));

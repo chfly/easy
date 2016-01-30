@@ -133,6 +133,4 @@ var App=React.createClass({
     }
 });
 
-
-
-ReactDOM.render(<App data={[]}/>, document.getElementById('example'));
+ReactDOM.render(<App data={getServerData}/>, document.getElementById('example'));
