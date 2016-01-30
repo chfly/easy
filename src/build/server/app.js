@@ -1,11 +1,15 @@
 require('jquery');
 var React=require('react');
 var ReactDOMServer=require('react-dom/server');
+var style={
+    borderBottom:'1px red solid',
+    padding:'3px'
+};
 
 var Comment=React.createClass({displayName: "Comment",
     render:function(){
         return(
-            React.createElement("div", null, 
+            React.createElement("div", {style: style}, 
                 React.createElement("p", null, this.props.author), 
                 React.createElement("span", null, this.props.children)
             )
@@ -78,6 +82,7 @@ var Box=React.createClass({displayName: "Box",
     },
     getComments:function(){
         $.get('/getComments',function(docs,statu){
+        //$.get('/app',function(docs,statu){
             if(docs.flag==200){
                 this.setState({data:docs.content})
             }else{
@@ -92,6 +97,7 @@ var Box=React.createClass({displayName: "Box",
                 //var comments=this.state.data.push(comment);
                 //this.setState({data:comments});
                 $.get('/getComments',function(docs,statu){
+                //$.get('/app',function(docs,statu){
                     if(docs.flag==200){
                         this.setState({data:docs.content})
                     }else{
@@ -102,9 +108,8 @@ var Box=React.createClass({displayName: "Box",
         }.bind(this))
     },
     componentDidMount:function(){
-
         this.getInitialState();
-        setInterval(this.getComments(),1000)
+        //setInterval(this.getComments(),1000)
     },
     render: function(){
         return(

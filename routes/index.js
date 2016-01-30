@@ -19,9 +19,9 @@ router.get('/app', function(req, res, next) {
         }
         else{
             var commentListData=docs;
-            console.log(docs);
+            //console.log(docs);
             var reactHTML=ReactDOMServer.renderToString(React.createElement(App, {data: commentListData}));
-            console.log(reactHTML);
+            //console.log(reactHTML);
             var html='<!doctype html>' +
                 '<html>' +
                 '<head>' +

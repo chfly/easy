@@ -3,11 +3,15 @@ require('jquery');
 require('bootstrap_js');
 var React=require('react');
 var ReactDOM=require('react-dom');
+var style={
+    borderBottom:'1px red solid',
+    padding:'3px'
+};
 
 var Comment=React.createClass({
     render:function(){
         return(
-            <div>
+            <div  style={style}>
                 <p >{this.props.author}</p>
                 <span >{this.props.children}</span>
             </div>
@@ -76,9 +80,10 @@ var Form=React.createClass({
 });
 var Box=React.createClass({
     getInitialState:function(){
-        return {data:[]}
+        return {data:this.props.data}
     },
     getComments:function(){
+        //$.get('/app',function(docs,statu){
         $.get('/getComments',function(docs,statu){
             if(docs.flag==200){
                 this.setState({data:docs.content})
@@ -93,6 +98,7 @@ var Box=React.createClass({
             if(docs.flag==200){
                 //var comments=this.state.data.push(comment);
                 //this.setState({data:comments});
+                //$.get('/app',function(docs,statu){
                 $.get('/getComments',function(docs,statu){
                     if(docs.flag==200){
                         this.setState({data:docs.content})
@@ -105,7 +111,7 @@ var Box=React.createClass({
     },
     componentDidMount:function(){
         this.getInitialState();
-        setInterval(this.getComments(),1000)
+        //setInterval(this.getComments(),1000)
     },
     render: function(){
         return(
@@ -121,10 +127,12 @@ var App=React.createClass({
     render:function(){
         return (
             <div>
-                <Box  />
+                <Box  data={this.props.data}/>
             </div>
         )
     }
 });
 
-ReactDOM.render(<App />, document.getElementById('example'));
+
+
+ReactDOM.render(<App data={[]}/>, document.getElementById('example'));

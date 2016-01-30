@@ -1,11 +1,15 @@
 require('jquery');
 var React=require('react');
 var ReactDOMServer=require('react-dom/server');
+var style={
+    borderBottom:'1px red solid',
+    padding:'3px'
+};
 
 var Comment=React.createClass({
     render:function(){
         return(
-            <div>
+            <div style={style}>
                 <p >{this.props.author}</p>
                 <span >{this.props.children}</span>
             </div>
@@ -78,6 +82,7 @@ var Box=React.createClass({
     },
     getComments:function(){
         $.get('/getComments',function(docs,statu){
+        //$.get('/app',function(docs,statu){
             if(docs.flag==200){
                 this.setState({data:docs.content})
             }else{
@@ -92,6 +97,7 @@ var Box=React.createClass({
                 //var comments=this.state.data.push(comment);
                 //this.setState({data:comments});
                 $.get('/getComments',function(docs,statu){
+                //$.get('/app',function(docs,statu){
                     if(docs.flag==200){
                         this.setState({data:docs.content})
                     }else{

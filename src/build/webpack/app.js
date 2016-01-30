@@ -3,11 +3,15 @@ require('jquery');
 require('bootstrap_js');
 var React=require('react');
 var ReactDOM=require('react-dom');
+var style={
+    borderBottom:'1px red solid',
+    padding:'3px'
+};
 
 var Comment=React.createClass({displayName: "Comment",
     render:function(){
         return(
-            React.createElement("div", null, 
+            React.createElement("div", {style: style}, 
                 React.createElement("p", null, this.props.author), 
                 React.createElement("span", null, this.props.children)
             )
@@ -76,15 +80,15 @@ var Form=React.createClass({displayName: "Form",
 });
 var Box=React.createClass({displayName: "Box",
     getInitialState:function(){
-        return {data:[]}
+        return {data:this.props.data}
     },
     getComments:function(){
-        $.get('/getComments',function(docs,statu){
-            if(docs.flag==200){
-                this.setState({data:docs.content})
-            }else{
-                console.log('getCommits error')
-            }
+        $.get('/app',function(docs,statu){
+            //if(docs.flag==200){
+            //    this.setState({data:docs.content})
+            //}else{
+            //    console.log('getCommits error')
+            //}
         }.bind(this))
     },
     handlerCommite:function(comment){
@@ -93,19 +97,19 @@ var Box=React.createClass({displayName: "Box",
             if(docs.flag==200){
                 //var comments=this.state.data.push(comment);
                 //this.setState({data:comments});
-                $.get('/getComments',function(docs,statu){
-                    if(docs.flag==200){
-                        this.setState({data:docs.content})
-                    }else{
-                        console.log('getCommits error')
-                    }
+                $.get('/app',function(docs,statu){
+                    //if(docs.flag==200){
+                    //    this.setState({data:docs.content})
+                    //}else{
+                    //    console.log('getCommits error')
+                    //}
                 }.bind(this))
             }
         }.bind(this))
     },
     componentDidMount:function(){
         this.getInitialState();
-        setInterval(this.getComments(),1000)
+        //setInterval(this.getComments(),1000)
     },
     render: function(){
         return(
@@ -121,10 +125,12 @@ var App=React.createClass({displayName: "App",
     render:function(){
         return (
             React.createElement("div", null, 
-                React.createElement(Box, null)
+                React.createElement(Box, {data: this.props.data})
             )
         )
     }
 });
 
-ReactDOM.render(React.createElement(App, null), document.getElementById('example'));
+
+
+ReactDOM.render(React.createElement(App, {data: []}), document.getElementById('example'));
