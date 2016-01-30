@@ -11,10 +11,10 @@ for(var i=0;i<schemas.length;i++){
 }
 var _getDoc=function(doc){
     return mongoose.model(doc)
-}
+};
 module.exports={
     getDoc:_getDoc
-}
+};
 
 /**************************测试数据库****************************************/
 
@@ -26,31 +26,38 @@ module.exports={
 
 /*
 
- //var ui={
- //  id:id,
- //  author:author,
- //  text:text
- //};
-
+ var ui={
+   id:id,
+   author:author,
+   text:text
+ };
+ var ui={
+ user:'tom1',
+ sex:'man'
+ };
 
  */
 
 //条件
+
+
 //var conditions={name:"root1"};
 
-//var UI=_getDoc('project');
+//var UI=_getDoc('data');
 
 /*************新增**************/
 /*
 
 
- UI.create(doc,function(err){
+
+ UI.create(ui,function(err){
  if(err){return console.error('新建失败',err);}
  console.log('新建成功');
  })
 
 
- */
+
+*/
 
 /*************删除**************/
 

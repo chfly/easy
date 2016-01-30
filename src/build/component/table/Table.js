@@ -10,8 +10,8 @@ module.exports=React.createClass({displayName: "exports",
                 
                     this.props.datas.map(function(data){
                         return(
-                            React.createElement("tr", {key: data.id}, 
-                                React.createElement("td", null, data.id), 
+                            React.createElement("tr", {key: data._id}, 
+                                React.createElement("td", null, data._id), 
                                 React.createElement("td", null, data.user), 
                                 React.createElement("td", null, data.sex)
                             )

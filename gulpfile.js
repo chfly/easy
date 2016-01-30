@@ -3,6 +3,7 @@
  */
 var gulp = require('gulp'),
     notify = require('gulp-notify'),
+    aliasCombo = require('gulp-alias-combo'),
     webpack=require('gulp-webpack'),
     react=require('gulp-react');
 
@@ -14,9 +15,29 @@ gulp.task('jsx',function(){
 });
 gulp.task('server',function(){
    return gulp.src('./src/entryServer//**/*.js')
+       //.pipe(aliasCombo({
+       //    baseUrl:__dirname+'/node_modules/',
+       //    alias:{
+       //        jquery:'jquery/dist/jquery.min.js',
+       //        bootstrap:'bootstrap/dist/js/bootstrap.min.js'
+       //    }
+       //}))
         .pipe(react())
         .pipe(gulp.dest('./src/build/server/'))
        .pipe(notify({message:"server task compelete"}))
+});
+gulp.task('webpackServer',function(){
+    return gulp.src('./src/entryWebpack//**/*.js')
+        //.pipe(aliasCombo({
+        //    baseUrl:__dirname+'/node_modules/',
+        //    alias:{
+        //        jquery:'jquery/dist/jquery.min.js',
+        //        bootstrap:'bootstrap/dist/js/bootstrap.min.js'
+        //    }
+        //}))
+        .pipe(react())
+        .pipe(gulp.dest('./src/build/webpack/'))
+        .pipe(notify({message:"server task compelete"}))
 });
 
 gulp.task('test',function(callback){
@@ -50,4 +71,4 @@ gulp.task('watch',function(){
     gulp.watch('./src/entryWebpack//**/*.js',['webpack'])
 });
 
-gulp.task('default',['jsx','server','webpack']);
+gulp.task('default',['jsx','server','webpack','webpackServer']);

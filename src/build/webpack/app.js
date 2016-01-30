@@ -1,6 +1,8 @@
+require('bootstrap_css');
 require('jquery');
+require('bootstrap_js');
 var React=require('react');
-var ReactDOMServer=require('react-dom/server');
+var ReactDOM=require('react-dom');
 
 var Comment=React.createClass({displayName: "Comment",
     render:function(){
@@ -74,7 +76,7 @@ var Form=React.createClass({displayName: "Form",
 });
 var Box=React.createClass({displayName: "Box",
     getInitialState:function(){
-        return {data:this.props.data}
+        return {data:[]}
     },
     getComments:function(){
         $.get('/getComments',function(docs,statu){
@@ -102,7 +104,6 @@ var Box=React.createClass({displayName: "Box",
         }.bind(this))
     },
     componentDidMount:function(){
-
         this.getInitialState();
         setInterval(this.getComments(),1000)
     },
@@ -116,13 +117,14 @@ var Box=React.createClass({displayName: "Box",
         )
     }
 });
-
-module.exports=React.createClass({displayName: "exports",
+var App=React.createClass({displayName: "App",
     render:function(){
         return (
             React.createElement("div", null, 
-                React.createElement(Box, {data: this.props.data})
+                React.createElement(Box, null)
             )
         )
     }
-})
+});
+
+ReactDOM.render(React.createElement(App, null), document.getElementById('example'));

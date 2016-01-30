@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/app', routes);
+app.use('/data', routes);
 app.use('/commitComment', routes);
 app.use('/getComments', routes);
 app.use('/users', users);

@@ -23,7 +23,7 @@ if(debug){
         }
      ;
     output={
-        path: path.join(__dirname,"/public/"),
+        path: path.join(__dirname,"/public/dist/"),
         publicPath: "http://localhost:8080/",
         filename: "js/[name].js"
     };

@@ -10,8 +10,8 @@ module.exports=React.createClass({
                 {
                     this.props.datas.map(function(data){
                         return(
-                            <tr key={data.id}>
-                                <td>{data.id}</td>
+                            <tr key={data._id}>
+                                <td>{data._id}</td>
                                 <td>{data.user}</td>
                                 <td>{data.sex}</td>
                             </tr>

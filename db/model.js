@@ -7,6 +7,10 @@ module.exports=[
             author :String,
             text : String,
             id : String
+        },
+        data:{
+            user:String,
+            sex:String
         }
     }
 ]
