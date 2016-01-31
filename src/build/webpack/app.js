@@ -1,144 +1,75 @@
-require('bootstrap_css');
-require('jquery');
-require('bootstrap_js');
+//require('bootstrap_css');
+//require('jquery');
+//require('bootstrap_js');
+//require('./css/my.css');
 var React=require('react');
 var ReactDOM=require('react-dom');
-var style={
-    borderBottom:'1px red solid',
-    padding:'3px'
-};
-
-var Comment=React.createClass({displayName: "Comment",
+var ProductCategoryRow=React.createClass({displayName: "ProductCategoryRow",
     render:function(){
+        return(React.createElement("tr", null, React.createElement("td", {colSpan: "2"}, this.props.category)));
+    }
+});
+var datas=[
+    {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
+    {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
+    {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
+    {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
+    {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
+    {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
+];
+var ProductRow=React.createClass({displayName: "ProductRow",
+    render:function(){
+        var name=this.props.product.stocked?this.props.product.name:(React.createElement("span", {style: {color:"red"}}, this.props.product.name))
         return(
-            React.createElement("div", {style: style}, 
-                React.createElement("p", null, this.props.author), 
-                React.createElement("span", null, this.props.children)
+            React.createElement("tr", null, 
+                React.createElement("td", null, name), 
+                React.createElement("td", null, this.props.product.price)
             )
         )
     }
-
 });
-var List=React.createClass({displayName: "List",
+var ProductTable=React.createClass({displayName: "ProductTable",
     render:function(){
-        var comments=this.props.data.map(function(comment){
-            return(
-                React.createElement(Comment, {key: comment.id, author: comment.author}, 
-                    comment.text
-                )
-            );
-        });
-        return(
-            React.createElement("div", null, 
-                comments
-            )
-        )
+        var rows=[];
+        var lastCategory=null;
+        this.props.products.forEach(function(product){
+            if(product.category!==lastCategory){
+                rows.push(React.createElement(ProductCategoryRow, {category: product.category, key: product.category}))
+            }
+            rows.push(React.createElement(ProductRow, {product: product, key: product.name}))
+            lastCategory=product.category;
+        })
+
     }
-
 });
-var Form=React.createClass({displayName: "Form",
-    getInitialState:function(){
-        return {author:'',text:''}
-    },
-    getAuthor:function(e){
-        this.setState({author:e.target.value})
-    },
-    getText:function(e){
-        this.setState({text:e.target.value})
-    },
-    handleSubmit:function(e){
-        e.preventDefault();
-        var author=this.state.author;
-        var text=this.state.text;
-        //alert(author+" | "+text)
-        if(!author||!text){
-            return;
-        }
-        this.props.onHandlerCommit({author:author,text:text});
-        this.setState({author:'',text:''});
-    },
+var SearchBar=React.createClass({
     render:function(){
         return(
-            React.createElement("form", {onSubmit: this.handleSubmit}, 
+            React.createElement("form", null, 
                 React.createElement("input", {
                     type: "text", 
-                    placeholder: "请输入用户名", 
-                    value: this.state.author, 
-                    onChange: this.getAuthor}
-                    ), 
+                    placeholder: "Search..."}
+
+                ), 
                 React.createElement("input", {
-                    type: "text", 
-                    placeholder: "请输入评论", 
-                    value: this.state.text, 
-                    onChange: this.getText}
-                    ), 
-                React.createElement("input", {type: "submit", value: "提交"})
-            )
-
-        )
-    }
-});
-var Box=React.createClass({displayName: "Box",
-    getInitialState:function(){
-        return {data:this.props.data}
-    },
-    getComments:function(){
-        //$.get('/app',function(docs,statu){
-        $.get('/getComments',function(docs,statu){
-            if(docs.flag==200){
-                this.setState({data:docs.content})
-            }else{
-                console.log('getCommits error')
-            }
-        }.bind(this))
-    },
-    handlerCommite:function(comment){
-        comment.id=Date.now();
-        $.post('/commitComment',comment,function(docs,state){
-            if(docs.flag==200){
-                //var comments=this.state.data.push(comment);
-                //this.setState({data:comments});
-                //$.get('/app',function(docs,statu){
-                $.get('/getComments',function(docs,statu){
-                    if(docs.flag==200){
-                        this.setState({data:docs.content})
-                    }else{
-                        console.log('getCommits error')
-                    }
-                }.bind(this))
-            }
-        }.bind(this))
-    },
-    componentDidMount:function(){
-        this.getInitialState();
-        //setInterval(this.getComments(),1000)
-    },
-    render: function(){
-        return(
-            React.createElement("div", null, 
-                React.createElement("h1", null, "评论话题"), 
-                React.createElement(List, {data: this.state.data}), 
-                React.createElement(Form, {onHandlerCommit: this.handlerCommite})
+                    type: "checkbox"}
+                ), 
+                React.createElement("label", null, "Only show products in stock")
             )
         )
     }
 });
-var App=React.createClass({displayName: "App",
+var FilterableProductTable=React.createClass({displayName: "FilterableProductTable",
     render:function(){
-        return (
-            React.createElement("div", null, 
-                React.createElement(Box, {data: this.props.data})
-            )
-        )
-    }
-});
-
-$.get('/getComments',function(docs,statu){
-    if(docs.flag==200){
-      var getServerData=docs.content;
-        ReactDOM.render(React.createElement(App, {data: getServerData}), document.getElementById('example'));
-    }else{
-        console.log('getCommits error')
+      return(
+          React.createElement("div", null, 
+              React.createElement(SearchBar, null), 
+              React.createElement(ProductTable, {products: datas})
+          )
+      )
     }
 })
 
+
+var mountNode=document.getElementById('react-main-mount');
+ReactDOM.render(React.createElement(ReactApp, null), mountNode);

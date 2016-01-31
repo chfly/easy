@@ -6,4 +6,4 @@ var React=require('react');
 var ReactDOM=require('react-dom');
 var ReactApp=require('../component/griddle/griddle');
 var mountNode=document.getElementById('react-main-mount');
-ReactDOM.render(<ReactApp />, mountNode);
+ReactDOM.render(React.createElement(ReactApp, null), mountNode);
