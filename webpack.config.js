@@ -16,14 +16,16 @@ var plugin=[];
 if(debug){
     entryConfig=
         {
-            app: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entryWebpack/app.js'],
-            //home: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/admin/home.serverjs'],
+            app: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/app.js'],
+            home: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/home.js'],
+            data: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/data.js'],
+            comment: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/comment.js'],
             //page_1: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_1.serverjs'],
             //page_2: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_2.serverjs'],
         }
      ;
     output={
-        path: path.join(__dirname,"/public/dist/"),
+        path: path.join(__dirname,"/public/"),
         publicPath: "http://localhost:8080/",
         filename: "js/[name].js"
     };
@@ -38,9 +40,9 @@ if(debug){
         }),
         new HtmlWebpackPlugin({
             title:'EASY',
-            favicon:'./src/view/admin/icon/easy.ico',
+            favicon:'./src/view/icon/easy.ico',
             filename:'/view/admin.html',
-            template:'./src/view/admin/index.html',
+            template:'./src/view/index.html',
             inject:true,
             hash:true,
             minify:{
@@ -51,16 +53,16 @@ if(debug){
     ]
 }else{
     entryConfig=[
-         './src/entry/pc/home.js'
+         './src/entry/entryWebpack/app.js'
      ];
     output={
-        path: path.join(__dirname,"/public/pc/assets/"),
-        publicPath: url+"/pc/assets/",
-        filename: "serverjs/pc.js",
-        chunkFilename:'serverjs/[id].chunk.js'
+        path: path.join(__dirname,"/public/dist/"),
+        publicPath: url+"/dist/",
+        filename: "js/app.js",
+        chunkFilename:'js/[id].chunk.js'
     };
     plugin=[
-        new webpack.optimize.CommonsChunkPlugin('serverjs/comment.js'),
+        new webpack.optimize.CommonsChunkPlugin('js/comment.js'),
         new ExtractTextPlugin('css/[name].css',{allChunks:true}),
         new webpack.ProvidePlugin({
             $: "jquery",
@@ -75,9 +77,9 @@ if(debug){
         }),
         new HtmlWebpackPlugin({
             title:'EASY',
-            favicon:'./src/view/pc/icon/easy.ico',
+            favicon:'./src/view/icon/easy.ico',
             filename:'/view/index.html',
-            template:'./src/view/pc/index.html',
+            template:'./src/view/index.html',
             inject:true,
             hash:true,
             minify:{

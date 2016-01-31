@@ -8,13 +8,13 @@ var gulp = require('gulp'),
     react=require('gulp-react');
 
 gulp.task('jsx',function(){
-  return gulp.src('./src/component//**/*.js')
+  return gulp.src('./src/entry/component//**/*.js')
        .pipe(react())
        .pipe(gulp.dest('./src/build/component/'))
         .pipe(notify({message:"jsx task compelete"}))
 });
 gulp.task('server',function(){
-   return gulp.src('./src/entryServer//**/*.js')
+   return gulp.src('./src/entry/entryServer//**/*.js')
        //.pipe(aliasCombo({
        //    baseUrl:__dirname+'/node_modules/',
        //    alias:{
@@ -27,7 +27,7 @@ gulp.task('server',function(){
        .pipe(notify({message:"server task compelete"}))
 });
 gulp.task('webpackServer',function(){
-    return gulp.src('./src/entryWebpack//**/*.js')
+    return gulp.src('./src/entry/entryWebpack//**/*.js')
         //.pipe(aliasCombo({
         //    baseUrl:__dirname+'/node_modules/',
         //    alias:{
@@ -41,7 +41,7 @@ gulp.task('webpackServer',function(){
 });
 
 gulp.task('test',function(callback){
-   return gulp.src('./src/entryWebpack/app.js')
+   return gulp.src('./src/entry/entryWebpack/app.js')
             .pipe(webpack({
            watch:true,
            module: {
@@ -60,15 +60,15 @@ gulp.task('test',function(callback){
 });
 
 gulp.task('webpack',function(callback){
-    gulp.src('./src/entryWebpack//**/*.js')
+    gulp.src('./src/entry/entryWebpack//**/*.js')
     .pipe(webpack(require('./webpack.config')))
     .pipe(gulp.dest('public/'))
     .pipe(notify({message:"webpack task compelete"}))
 });
 gulp.task('watch',function(){
-    gulp.watch('./src/component//**/*.js',['jsx','server','webpack']);
-    gulp.watch('./src/entryServer//**/*.js',['server']);
-    gulp.watch('./src/entryWebpack//**/*.js',['webpack'])
+    gulp.watch('./src/entry/component//**/*.js',['jsx','server','webpack']);
+    gulp.watch('./src/entry/entryServer//**/*.js',['server']);
+    gulp.watch('./src/entry/entryWebpack//**/*.js',['webpack'])
 });
 
 gulp.task('default',['jsx','server','webpack','webpackServer']);

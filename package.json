@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "hot": "webpack-dev-server --config webpack.config.js --content-base public/ --inline --devtool eval --progress --colors",
-    "pub": "webpack --config webpack.config.js -c -p"
+    "pub": "webpack --config webpack.config.js -c -p",
+    "dev": "webpack --config webpack.config.js -c -d -w"
   },
   "repository": {
     "type": "git",

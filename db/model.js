@@ -11,6 +11,21 @@ module.exports=[
         data:{
             user:String,
             sex:String
+        },
+        fake:{
+            id: String,
+            name: String,
+            city: String,
+            state: String,
+            country: String,
+            company: String,
+            favoriteNumber: String
+        },
+        columnMeta:{
+            columnName: String,
+            order: String,
+            locked: String,
+            visible: String
         }
     }
 ]

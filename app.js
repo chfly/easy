@@ -28,6 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/home', routes);
+app.use('/comment', routes);
 app.use('/app', routes);
 app.use('/data', routes);
 app.use('/commitComment', routes);
