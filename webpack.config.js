@@ -100,6 +100,14 @@ module.exports={
                 loader: ExtractTextPlugin.extract("style-loader","css-loader")
             },
             {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract(
+                    // activate source maps via loader query
+                    'css?sourceMap!' +
+                    'less?sourceMap'
+                )
+            },
+            {
                 test: /\.scss$/,
                 loaders: ["style","css?sourceMap","sass?sourceMap"]
             },
@@ -116,7 +124,7 @@ module.exports={
     },
     resolve:{
         root:[__dirname+'/src',__dirname+'/node_modules'],
-        extensions:['','.js','.json','.css','.scss','.ejs','.png','.jpg'],
+        extensions:['','.js','.json','.less','.css','.scss','.ejs','.png','.jpg'],
         alias:{
             jquery:__dirname+'/node_modules/jquery/dist/jquery.min.js',
             bootstrap_js:__dirname+'/node_modules/bootstrap/dist/js/bootstrap.min.js',
