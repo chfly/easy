@@ -1,7 +1,56 @@
-require('jquery');
-var React=require('react');
-var ReactDOM=require('react-dom');
-var comments=require('../../data/comment');
+/**
+ * Created by chenwei on 2016/2/4.
+ */
+    require('jquery');
+var React = require('react');
+var Reflux=require('reflux');
+var ReactDOMServer=require('react-dom/server');
+
+var commentActions=Reflux.createActions([
+    'getComments',
+    'publishComment'
+]);
+
+
+var list=[];
+var commentStore=Reflux.createStore({
+    //list:function(){
+    //    return this.getComments()
+    //},
+    /*方式三*/
+    listenables:commentActions,
+    init:function(){
+        /*方式一*/
+        //this.listenTo(commentActions.getComments, this.getComments);
+        //this.listenTo(commentActions.publishComment, this.publishComment);
+        /*方式二*/
+        //this.listenToMany(commentActions);
+    },
+    getComments:function(){
+        $.get('/getComments',function(data,statu){
+            if(data.flag==200){
+                list=data.content;
+                this.trigger(list);
+                return list;
+            }
+        }.bind(this))
+
+    },
+    publishComment:function(comment){
+        $.post('/commitComment',comment,function(data,statu){
+            if(data.flag==200){
+                this.getComments();
+            }
+        }.bind(this))
+
+    },
+    getList:function(){
+        this.getComments();
+        return list;
+    }
+})
+
+
 var style={
     borderBottom:'1px red solid',
     padding:'3px'
@@ -78,22 +127,30 @@ var Form=React.createClass({
 });
 var Box=React.createClass({
     getInitialState:function(){
-        return {data:comments}
+        return {data:this.props.data}
+    },
+    onChange: function() {
+        this.setState({
+            data: commentStore.getList()
+        });
     },
     handlerCommite:function(comment){
         comment.id=Date.now();
-        $.post('/commitComment',comment,function(docs,state){
-            if(docs.flag==200){
-                this.setState({data:comments})
-            }
-        }.bind(this))
+        commentActions.publishComment(comment);
     },
     componentDidMount:function(){
-        this.getInitialState();
+        this.unsubscribe = commentStore.listen(this.onChange);
+    },
+    componentWillUnmount: function() {
+        this.unsubscribe();
+    },
+    buttonClick:function(){
+        commentActions.getComments();
     },
     render: function(){
         return(
             <div>
+                <button onClick={this.buttonClick}>button</button>
                 <h1>评论话题</h1>
                 <List data={this.state.data} />
                 <Form onHandlerCommit={this.handlerCommite}/>
@@ -101,14 +158,25 @@ var Box=React.createClass({
         )
     }
 });
-var App=React.createClass({
+module.exports=React.createClass({
     render:function(){
         return (
             <div>
-                <Box/>
+                <Box data={this.props.data}/>
             </div>
         )
     }
-});
-var id=document.getElementById('react-main-mount');
-ReactDOM.render(<App/>,id);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+

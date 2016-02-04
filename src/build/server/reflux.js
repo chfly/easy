@@ -1,7 +1,56 @@
-require('jquery');
-var React=require('react');
+/**
+ * Created by chenwei on 2016/2/4.
+ */
+    require('jquery');
+var React = require('react');
+var Reflux=require('reflux');
 var ReactDOMServer=require('react-dom/server');
-var comments=require('../../data/comment');
+
+var commentActions=Reflux.createActions([
+    'getComments',
+    'publishComment'
+]);
+
+
+var list=[];
+var commentStore=Reflux.createStore({
+    //list:function(){
+    //    return this.getComments()
+    //},
+    /*方式三*/
+    listenables:commentActions,
+    init:function(){
+        /*方式一*/
+        //this.listenTo(commentActions.getComments, this.getComments);
+        //this.listenTo(commentActions.publishComment, this.publishComment);
+        /*方式二*/
+        //this.listenToMany(commentActions);
+    },
+    getComments:function(){
+        $.get('/getComments',function(data,statu){
+            if(data.flag==200){
+                list=data.content;
+                this.trigger(list);
+                return list;
+            }
+        }.bind(this))
+
+    },
+    publishComment:function(comment){
+        $.post('/commitComment',comment,function(data,statu){
+            if(data.flag==200){
+                this.getComments();
+            }
+        }.bind(this))
+
+    },
+    getList:function(){
+        this.getComments();
+        return list;
+    }
+})
+
+
 var style={
     borderBottom:'1px red solid',
     padding:'3px'
@@ -78,22 +127,30 @@ var Form=React.createClass({displayName: "Form",
 });
 var Box=React.createClass({displayName: "Box",
     getInitialState:function(){
-        return {data:comments}
+        return {data:this.props.data}
+    },
+    onChange: function() {
+        this.setState({
+            data: commentStore.getList()
+        });
     },
     handlerCommite:function(comment){
         comment.id=Date.now();
-        $.post('/commitComment',comment,function(docs,state){
-            if(docs.flag==200){
-                this.setState({data:comments})
-            }
-        }.bind(this))
+        commentActions.publishComment(comment);
     },
     componentDidMount:function(){
-        this.getInitialState();
+        this.unsubscribe = commentStore.listen(this.onChange);
+    },
+    componentWillUnmount: function() {
+        this.unsubscribe();
+    },
+    buttonClick:function(){
+        commentActions.getComments();
     },
     render: function(){
         return(
             React.createElement("div", null, 
+                React.createElement("button", {onClick: this.buttonClick}, "button"), 
                 React.createElement("h1", null, "评论话题"), 
                 React.createElement(List, {data: this.state.data}), 
                 React.createElement(Form, {onHandlerCommit: this.handlerCommite})
@@ -101,16 +158,25 @@ var Box=React.createClass({displayName: "Box",
         )
     }
 });
-var App=React.createClass({displayName: "App",
+module.exports=React.createClass({displayName: "exports",
     render:function(){
         return (
             React.createElement("div", null, 
-                React.createElement(Box, null)
+                React.createElement(Box, {data: this.props.data})
             )
         )
     }
-});
-var reactHtml=ReactDOMServer.renderToString(React.createElement(App, null));
-module.exports=function(){
-    return reactHtml;
-}
+})
+
+
+
+
+
+
+
+
+
+
+
+
+

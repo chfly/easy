@@ -1,12 +1,11 @@
 require('jquery');
 var React=require('react');
 var ReactDOMServer=require('react-dom/server');
+var comments=require('../../data/comment');
 var style={
     borderBottom:'1px red solid',
     padding:'3px'
 };
-
-
 var Comment=React.createClass({
     render:function(){
         return(
@@ -79,40 +78,18 @@ var Form=React.createClass({
 });
 var Box=React.createClass({
     getInitialState:function(){
-        return {data:this.props.data}
-    },
-    getComments:function(){
-        $.get('/getComments',function(docs,statu){
-        //$.get('/app',function(docs,statu){
-            if(docs.flag==200){
-                //$('#example').empty().append(docs.reactHtml);
-                this.setState({data:docs.content})
-            }else{
-                console.log('getCommits error')
-            }
-        }.bind(this))
+        return {data:comments}
     },
     handlerCommite:function(comment){
         comment.id=Date.now();
         $.post('/commitComment',comment,function(docs,state){
             if(docs.flag==200){
-
-                $.get('/getComments',function(docs,statu){
-                //$.get('/app',function(docs,statu){
-                    if(docs.flag==200){
-                        //$('#example').empty().append(docs.reactHtml);
-                        this.setState({data:docs.content})
-                    }else{
-                        console.log('getCommits error')
-                    }
-                }.bind(this))
+                this.setState({data:comments})
             }
         }.bind(this))
     },
     componentDidMount:function(){
         this.getInitialState();
-        this.getComments()
-        //setInterval(this.getComments(),1000)
     },
     render: function(){
         return(
@@ -124,13 +101,16 @@ var Box=React.createClass({
         )
     }
 });
-
-module.exports=React.createClass({
+var App=React.createClass({
     render:function(){
         return (
             <div>
-                <Box data={this.props.data}/>
+                <Box/>
             </div>
         )
     }
-})
+});
+var reactHtml=ReactDOMServer.renderToString(<App/>);
+module.exports=function(){
+    return reactHtml;
+}

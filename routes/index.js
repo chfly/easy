@@ -1,19 +1,16 @@
 var express = require('express');
 var router = express.Router();
-
+var fs=require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'express' });
 });
-router.get('/app', function(req, res, next) {
-    res.render('app');
-});
-/**************************************comment获取评论数据******************************************/
-router.get('/comment', function(req, res, next) {
+/**************************************reflux******************************************/
+router.get('/reflux', function(req, res, next) {
     var React=require('react');
     var ReactDOMServer=require('react-dom/server');
-    var App=require('../src/build/server/comment');
+    var App=require('../src/build/server/reflux');
     var Comment=db.getDoc('comment');
     var fields={_id:0,__v:0};
     Comment.find({},fields,{},function(err,docs){
@@ -24,9 +21,64 @@ router.get('/comment', function(req, res, next) {
             var commentListData=docs;
             var reactHTML=ReactDOMServer.renderToString(React.createElement(App, {data:commentListData}));
             //console.log(reactHTML);
-            res.render('comment', {reactOutput: reactHTML});
+            res.render('reflux', {reactOutput: reactHTML});
         }
     })
+});
+/**************************************Router******************************************/
+router.get('/router', function(req, res, next) {
+    res.render('react-router', { title: 'express' });
+});
+/**************************************app******************************************/
+router.get('/app', function(req, res, next) {
+    res.render('app');
+});
+/**************************************comment获取评论数据******************************************/
+//router.get('/comment', function(req, res, next) {
+//    var React=require('react');
+//    var ReactDOMServer=require('react-dom/server');
+//    var App=require('../src/build/server/comment');
+//    var Comment=db.getDoc('comment');
+//    var fields={_id:0,__v:0};
+//    Comment.find({},fields,{},function(err,docs){
+//        if(err){
+//            console.error('error',err);res.json({flag:500});
+//        }
+//        else{
+//            var commentListData=docs;
+//            console.log(docs);
+//            var reactHTML=ReactDOMServer.renderToString(React.createElement(App, {data:commentListData}));
+//            console.log(reactHTML);
+//            //res.render('comment', {reactOutput: reactHTML});
+//            var html='<!DOCTYPE html>' +
+//                '<html>' +
+//                '<head>' +
+//                '<meta charset="utf-8">' +
+//                '  <title>reflux</title>' +
+//                ' <meta name="viewport" content="width=device-width,initial-scale=1">' +
+//                '<!--<link rel="shortcut icon" href="http://localhost:8080/easy.ico">-->' +
+//                ' <!--<link href="http://localhost:8080/css/app.css" rel="stylesheet">-->' +
+//                '</head>' +
+//                '<body>' +
+//                '<div id="react-main-mount">' +
+//                reactHTML+
+//                '</div>' +
+//                '<script src="http://localhost:8080/js/comment.js"></script>' +
+//                '</body>' +
+//                '</html>';
+//            //console.log(html)
+//
+//            res.send(html)
+//
+//
+//        }
+//    })
+//});
+router.get('/comment', function(req, res, next) {
+    var reactHTML=require('../src/build/server/comment')();
+    console.log(reactHTML);
+    res.render('comment', {reactOutput: reactHTML});
+
 });
 /**************************************获取data数据******************************************/
 router.get('/data', function(req, res, next) {
@@ -51,15 +103,26 @@ router.post('/commitComment', function(req, res, next) {
 router.get('/getComments', function(req, res, next) {
     var Comment=db.getDoc('comment');
     var fields={_id:0,__v:0};
-    Comment.find({},fields,{},function(err,docs){
-        if(err){
-            console.error('error',err);
-            res.json({flag:500});
-        }
-        else{
-            res.json({flag:200,content:docs});
-        }
-    })
+    var getComments=function(){
+        Comment.find({},fields,{},function(err,docs){
+            if(err){
+                console.error('error',err);
+                //res.json({flag:500});
+            }
+            else{
+                //res.json({flag:200,content:docs});
+                var inputData="module.exports =["+docs+']';
+                console.log(inputData)
+                fs.writeFile('d:/easy/src/data/comment.js',inputData,function(error){
+                    if(error){return console.log('comment file write false',error)}
+                    console.log("数据写入成功！");
+                    console.log("--------我是分割线-------------")
+                })
+                res.send('ok')
+            }
+        })
+    }
+    getComments();
 });
 /********************************************************************************/
 

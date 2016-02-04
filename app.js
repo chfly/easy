@@ -32,6 +32,8 @@ app.use('/home', routes);
 app.use('/comment', routes);
 app.use('/app', routes);
 app.use('/data', routes);
+app.use('/router', routes);
+app.use('/reflux', routes);
 app.use('/commitComment', routes);
 app.use('/getComments', routes);
 app.use('/users', users);

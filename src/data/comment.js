@@ -1,0 +1,1 @@
+module.exports =[{ id: '1454568769753', text: '1', author: '1' }]
