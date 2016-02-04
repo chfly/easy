@@ -14,9 +14,6 @@ var commentActions=Reflux.createActions([
 
 var list=[];
 var commentStore=Reflux.createStore({
-    //list:function(){
-    //    return this.getComments()
-    //},
     /*方式三*/
     listenables:commentActions,
     init:function(){
@@ -45,7 +42,6 @@ var commentStore=Reflux.createStore({
 
     },
     getList:function(){
-        this.getComments();
         return list;
     }
 })
@@ -97,7 +93,6 @@ var Form=React.createClass({
         e.preventDefault();
         var author=this.state.author;
         var text=this.state.text;
-        //alert(author+" | "+text)
         if(!author||!text){
             return;
         }
@@ -139,6 +134,7 @@ var Box=React.createClass({
         commentActions.publishComment(comment);
     },
     componentDidMount:function(){
+        commentActions.getComments();
         this.unsubscribe = commentStore.listen(this.onChange);
     },
     componentWillUnmount: function() {
@@ -146,6 +142,9 @@ var Box=React.createClass({
     },
     buttonClick:function(){
         commentActions.getComments();
+        //$.get('/write',function(data,err){
+        //    if(err){return console.log(err)}
+        //})
     },
     render: function(){
         return(

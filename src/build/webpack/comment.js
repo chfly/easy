@@ -1,14 +1,11 @@
-require('bootstrap_css');
 require('jquery');
-require('bootstrap_js');
-require('./css/my.css');
 var React=require('react');
 var ReactDOM=require('react-dom');
+var comments=require('../../data/comment');
 var style={
     borderBottom:'1px red solid',
     padding:'3px'
 };
-
 var Comment=React.createClass({displayName: "Comment",
     render:function(){
         return(
@@ -81,40 +78,18 @@ var Form=React.createClass({displayName: "Form",
 });
 var Box=React.createClass({displayName: "Box",
     getInitialState:function(){
-        return {data:this.props.data}
-    },
-    getComments:function(){
-        $.get('/getComments',function(docs,statu){
-        //$.get('/app',function(docs,statu){
-            if(docs.flag==200){
-                //$('#example').empty().append(docs.reactHtml);
-                this.setState({data:docs.content})
-            }else{
-                console.log('getCommits error')
-            }
-        }.bind(this))
+        return {data:comments}
     },
     handlerCommite:function(comment){
         comment.id=Date.now();
         $.post('/commitComment',comment,function(docs,state){
             if(docs.flag==200){
-
-                $.get('/getComments',function(docs,statu){
-                //$.get('/app',function(docs,statu){
-                    if(docs.flag==200){
-                        //$('#example').empty().append(docs.reactHtml);
-                        this.setState({data:docs.content})
-                    }else{
-                        console.log('getCommits error')
-                    }
-                }.bind(this))
+                this.setState({data:comments})
             }
         }.bind(this))
     },
     componentDidMount:function(){
-        //this.getInitialState();
-        this.getComments();
-        //setInterval(this.getComments(),1000)
+        this.getInitialState();
     },
     render: function(){
         return(
@@ -130,10 +105,10 @@ var App=React.createClass({displayName: "App",
     render:function(){
         return (
             React.createElement("div", null, 
-                React.createElement(Box, {data: this.props.data})
+                React.createElement(Box, null)
             )
         )
     }
 });
-
-ReactDOM.render(React.createElement(App, {data: []}), document.getElementById('react-main-mount'));
+var id=document.getElementById('react-main-mount');
+ReactDOM.render(React.createElement(App, null),id);

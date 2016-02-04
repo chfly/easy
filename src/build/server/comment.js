@@ -1,7 +1,6 @@
 require('jquery');
 var React=require('react');
 var ReactDOMServer=require('react-dom/server');
-var comments=require('../../data/comment');
 var style={
     borderBottom:'1px red solid',
     padding:'3px'
@@ -78,18 +77,33 @@ var Form=React.createClass({displayName: "Form",
 });
 var Box=React.createClass({displayName: "Box",
     getInitialState:function(){
-        return {data:comments}
+        return {data:this.props.data}
+    },
+    getComments:function(){
+        $.get('/getComments',function(docs,statu){
+            if(docs.flag==200){
+                this.setState({data:docs.content})
+            }else{
+                console.log('getCommits error')
+            }
+        }.bind(this))
     },
     handlerCommite:function(comment){
         comment.id=Date.now();
         $.post('/commitComment',comment,function(docs,state){
             if(docs.flag==200){
-                this.setState({data:comments})
+                $.get('/getComments',function(docs,statu){
+                    if(docs.flag==200){
+                        this.setState({data:docs.content})
+                    }else{
+                        console.log('getCommits error')
+                    }
+                }.bind(this))
             }
         }.bind(this))
     },
     componentDidMount:function(){
-        this.getInitialState();
+        this.getComments()
     },
     render: function(){
         return(
@@ -101,16 +115,13 @@ var Box=React.createClass({displayName: "Box",
         )
     }
 });
-var App=React.createClass({displayName: "App",
+
+module.exports=React.createClass({displayName: "exports",
     render:function(){
         return (
             React.createElement("div", null, 
-                React.createElement(Box, null)
+                React.createElement(Box, {data: this.props.data})
             )
         )
     }
-});
-var reactHtml=ReactDOMServer.renderToString(React.createElement(App, null));
-module.exports=function(){
-    return reactHtml;
-}
+})

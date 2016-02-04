@@ -22,6 +22,7 @@ if(debug){
             comment: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/comment.js'],
             router: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/router.js'],
             reflux: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/reflux.js'],
+            isomorphic: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/isomorphic.js'],
             //page_1: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_1.serverjs'],
             //page_2: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_2.serverjs'],
         }

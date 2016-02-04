@@ -1,7 +1,6 @@
 require('jquery');
 var React=require('react');
 var ReactDOM=require('react-dom');
-var comments=require('../../data/comment');
 var style={
     borderBottom:'1px red solid',
     padding:'3px'
@@ -78,18 +77,33 @@ var Form=React.createClass({
 });
 var Box=React.createClass({
     getInitialState:function(){
-        return {data:comments}
+        return {data:this.props.data}
+    },
+    getComments:function(){
+        $.get('/getComments',function(docs,statu){
+            if(docs.flag==200){
+                this.setState({data:docs.content})
+            }else{
+                console.log('getCommits error')
+            }
+        }.bind(this))
     },
     handlerCommite:function(comment){
         comment.id=Date.now();
         $.post('/commitComment',comment,function(docs,state){
             if(docs.flag==200){
-                this.setState({data:comments})
+                $.get('/getComments',function(docs,statu){
+                    if(docs.flag==200){
+                        this.setState({data:docs.content})
+                    }else{
+                        console.log('getCommits error')
+                    }
+                }.bind(this))
             }
         }.bind(this))
     },
     componentDidMount:function(){
-        this.getInitialState();
+        this.getComments();
     },
     render: function(){
         return(
@@ -105,10 +119,10 @@ var App=React.createClass({
     render:function(){
         return (
             <div>
-                <Box/>
+                <Box data={this.props.data}/>
             </div>
         )
     }
 });
-var id=document.getElementById('react-main-mount');
-ReactDOM.render(<App/>,id);
+
+ReactDOM.render(<App data={[]}/>, document.getElementById('react-main-mount'));

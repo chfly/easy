@@ -1,17 +1,15 @@
 /**
  * Created by chenwei on 2016/2/4.
  */
+var fs = require('fs');
     require('jquery');
 var React = require('react');
 var Reflux=require('reflux');
 var ReactDOMServer=require('react-dom/server');
-
 var commentActions=Reflux.createActions([
     'getComments',
     'publishComment'
 ]);
-
-
 var list=[];
 var commentStore=Reflux.createStore({
     //list:function(){
@@ -45,12 +43,9 @@ var commentStore=Reflux.createStore({
 
     },
     getList:function(){
-        this.getComments();
         return list;
     }
 })
-
-
 var style={
     borderBottom:'1px red solid',
     padding:'3px'
@@ -127,25 +122,29 @@ var Form=React.createClass({
 });
 var Box=React.createClass({
     getInitialState:function(){
-        return {data:this.props.data}
+        return {data:commentStore.getList()}
     },
     onChange: function() {
-        this.setState({
-            data: commentStore.getList()
-        });
+        //this.setState({
+            //data: commentStore.getList()
+        //});
     },
     handlerCommite:function(comment){
-        comment.id=Date.now();
-        commentActions.publishComment(comment);
+        //comment.id=Date.now();
+        //commentActions.publishComment(comment);
     },
     componentDidMount:function(){
-        this.unsubscribe = commentStore.listen(this.onChange);
+        //commentActions.getComments();
+        //this.unsubscribe = commentStore.listen(this.onChange);
     },
     componentWillUnmount: function() {
-        this.unsubscribe();
+        //this.unsubscribe();
     },
     buttonClick:function(){
-        commentActions.getComments();
+        //commentActions.getComments();
+        $.get('/write',function(data,err){
+            if(err){return console.log(err)}
+        })
     },
     render: function(){
         return(
@@ -158,18 +157,19 @@ var Box=React.createClass({
         )
     }
 });
-module.exports=React.createClass({
+var App=React.createClass({
     render:function(){
         return (
             <div>
-                <Box data={this.props.data}/>
+                <Box/>
             </div>
         )
     }
 })
-
-
-
+var reactHtml=ReactDOMServer.renderToString(<App/>);
+module.exports=function(){
+    return reactHtml;
+}
 
 
 
