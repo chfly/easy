@@ -16,13 +16,13 @@ var plugin=[];
 if(debug){
     entryConfig=
         {
-            app: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/app.js'],
-            home: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/home.js'],
-            data: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/data.js'],
-            comment: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/comment.js'],
-            router: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/router.js'],
-            reflux: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/reflux.js'],
-            isomorphic: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/entryWebpack/isomorphic.js'],
+            app: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/app.js'],
+            home: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/home.js'],
+            data: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/data.js'],
+            comment: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/comment.js'],
+            router: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/router.js'],
+            reflux: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/reflux.js'],
+            isomorphic: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/isomorphic.js'],
             //page_1: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_1.serverjs'],
             //page_2: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_2.serverjs'],
         }
