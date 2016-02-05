@@ -3,17 +3,40 @@
  */
 var gulp = require('gulp'),
     notify = require('gulp-notify'),
+    less = require('gulp-less'),
     aliasCombo = require('gulp-alias-combo'),
     webpack=require('gulp-webpack'),
     react=require('gulp-react');
+    //livereload = require('gulp-livereload'),
+    //connect = require('gulp-connect');
 
-gulp.task('jsx',function(){
+//server
+//gulp.task('angularServer', function() {
+//    connect.server({
+//        root: 'public/',
+//        port: 3001,
+//        livereload: true
+//    });
+//});
+//reload server
+//gulp.task('reload-dev',function() {
+//    gulp.src('public/tpls//**/*.html')
+//        .pipe(connect.reload());
+//});
+//move html
+gulp.task('tpls', function(){
+    return gulp.src('./src/angular/tpls//**/*.html')
+        .pipe(gulp.dest('public/tpls/'))
+        .pipe(notify({message : 'Html task complete'}))
+})
+gulp.task('jsx',function(done){
   return gulp.src('./src/react/entry/component//**/*.js')
        .pipe(react())
        .pipe(gulp.dest('./src/react/build/component/'))
-        .pipe(notify({message:"jsx task compelete"}))
+        //.pipe(notify({message:"jsx task compelete"}))
+      .on('end', done);
 });
-gulp.task('server',function(){
+gulp.task('server',function(done){
    return gulp.src('./src/react/entry/entryServer//**/*.js')
        //.pipe(aliasCombo({
        //    baseUrl:__dirname+'/node_modules/',
@@ -24,9 +47,29 @@ gulp.task('server',function(){
        //}))
         .pipe(react())
         .pipe(gulp.dest('./src/react/build/server/'))
-       .pipe(notify({message:"server task compelete"}))
+       .on('end', done);
+       //.pipe(notify({message:"server task compelete"}))
 });
-gulp.task('webpackServer',function(){
+gulp.task('webpack',function(done){
+    //gulp.src('./src/react/entry/entryWebpack//**/*.js')
+    //gulp.src('./src/react/entry/entryWebpack/react.js')
+    //.pipe(webpack(require('./webpack.config')))
+    webpack(require('./webpack.config'))
+    .pipe(gulp.dest('public/'))
+    .on('end', done);
+    //.pipe(notify({message:"Webpack task compelete"}))
+});
+gulp.task('watch',function(){
+    gulp.watch('./src/angular/less//**/*.less', ['less']);
+    gulp.watch('./src/react/entry/component//**/*.js',['jsx','server','webpack']);
+    gulp.watch('./src/react/entry/entryServer//**/*.js',['server']);
+    gulp.watch('./src/react/entry/entryWebpack//**/*.js',['webpack']);
+    gulp.watch('./src/angular//**/*.js',['webpack']);
+    //监听生产环境目录变化
+    //gulp.watch('public/tpls//**/*.html',['reload-dev']);
+});
+gulp.task('default',['tpls','jsx','server','webpack','webpackServer','watch']);
+gulp.task('webpackServer',function(done){
     return gulp.src('./src/react/entry/entryWebpack//**/*.js')
         //.pipe(aliasCombo({
         //    baseUrl:__dirname+'/node_modules/',
@@ -37,42 +80,25 @@ gulp.task('webpackServer',function(){
         //}))
         .pipe(react())
         .pipe(gulp.dest('./src/react/build/webpack/'))
-        .pipe(notify({message:"server task compelete"}))
+        .on('end', done);
+    //.pipe(notify({message:"server task compelete"}))
 });
-
-gulp.task('test',function(callback){
-   return gulp.src('./src/react/entry/entryWebpack/app.js')
-            .pipe(webpack({
-           watch:true,
-           module: {
-               loaders: [ {
-                   test: /\.jsx?$/,
-                   exclude: /(node_modules|bower_components)/,
-                   loader: 'babel',
-                   query: {
-                       presets: ['react', 'es2015']
-                   }
-               }]
-           }
-       }))
-            .pipe(gulp.dest('./src/react/test/'))
-    .pipe(notify({message:"test task compelete"}))
+gulp.task('test',function(done){
+    return gulp.src('./src/react/entry/entryWebpack/app.js')
+        .pipe(webpack({
+            watch:true,
+            module: {
+                loaders: [ {
+                    test: /\.jsx?$/,
+                    exclude: /(node_modules|bower_components)/,
+                    loader: 'babel',
+                    query: {
+                        presets: ['react', 'es2015']
+                    }
+                }]
+            }
+        }))
+        .pipe(gulp.dest('./src/react/test/'))
+        .on('end', done);
+    //.pipe(notify({message:"test task compelete"}))
 });
-
-gulp.task('webpack',function(callback){
-    //gulp.src('./src/react/entry/entryWebpack//**/*.js')
-    //gulp.src('./src/react/entry/entryWebpack/react.js')
-    //.pipe(webpack(require('./webpack.config')))
-    webpack(require('./webpack.config'))
-    .pipe(gulp.dest('public/'))
-    .pipe(notify({message:"reactWebpack task compelete"}))
-});
-
-gulp.task('watch',function(){
-    gulp.watch('./src/react/entry/component//**/*.js',['jsx','server','webpack']);
-    gulp.watch('./src/react/entry/entryServer//**/*.js',['server']);
-    gulp.watch('./src/react/entry/entryWebpack//**/*.js',['webpack']);
-    gulp.watch('./src/angular//**/*.js',['webpack'])
-});
-
-gulp.task('default',['jsx','server','webpack','webpackServer']);
