@@ -28,17 +28,25 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/home', routes);
-app.use('/comment', routes);
-app.use('/app', routes);
-app.use('/data', routes);
-app.use('/router', routes);
-app.use('/reflux', routes);
+app.use('/react', routes);
+app.use('/angular', routes);
 app.use('/commitComment', routes);
 app.use('/getComments', routes);
-app.use('/isomorphic', routes);
-app.use('/write', routes);
+
+
+/*test*/
 app.use('/users', users);
+app.use('/isomorphic', users);
+app.use('/write', users);
+app.use('/home', users);
+app.use('/comment', users);
+app.use('/app', users);
+app.use('/data', users);
+app.use('/router', users);
+app.use('/reflux', users);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,9 +1,5 @@
-//require('bootstrap_css');
-//require('jquery');
-//require('bootstrap_js');
-//require('./css/my.css');
 var React=require('react');
-var ReactDOM=require('react-dom');
+var ReactDOMServer=require('react-dom/server');
 var datas=[
     {category: "Sporting Goods", price: "$49.99", stocked: true, name: "football"},
     {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
@@ -103,6 +99,8 @@ var FilterableProductTable=React.createClass({displayName: "FilterableProductTab
     }
 });
 
-
-var mountNode=document.getElementById('react-main-mount');
-ReactDOM.render(React.createElement(FilterableProductTable, null), mountNode);
+var reactHTML=ReactDOMServer.renderToString(React.createElement(FilterableProductTable, null));
+console.log(reactHTML);
+module.exports=function(){
+    return reactHTML
+}

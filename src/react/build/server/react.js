@@ -1,18 +1,9 @@
-require('bootstrap_css');
-require('jquery');
-require('bootstrap_js');
-require('./css/styles.css')
 var React=require('react');
-var ReactDOM=require('react-dom');
-var style={
-    borderBottom:'1px red solid',
-    padding:'3px'
-};
-
+var ReactDOMServer=require('react-dom/server');
 var Comment=React.createClass({displayName: "Comment",
     render:function(){
         return(
-            React.createElement("div", {style: style}, 
+            React.createElement("div", null, 
                 React.createElement("p", null, this.props.author), 
                 React.createElement("span", null, this.props.children)
             )
@@ -79,61 +70,24 @@ var Form=React.createClass({displayName: "Form",
         )
     }
 });
-var Box=React.createClass({displayName: "Box",
+module.exports=React.createClass({displayName: "exports",
     getInitialState:function(){
         return {data:this.props.data}
     },
-    getComments:function(){
-        $.get('/getComments',function(docs,statu){
-        //$.get('/app',function(docs,statu){
-            if(docs.flag==200){
-                //$('#example').empty().append(docs.reactHtml);
-                this.setState({data:docs.content})
-            }else{
-                console.log('getCommits error')
-            }
-        }.bind(this))
-    },
-    handlerCommite:function(comment){
-        comment.id=Date.now();
-        $.post('/commitComment',comment,function(docs,state){
-            if(docs.flag==200){
-
-                $.get('/getComments',function(docs,statu){
-                //$.get('/app',function(docs,statu){
-                    if(docs.flag==200){
-                        //$('#example').empty().append(docs.reactHtml);
-                        this.setState({data:docs.content})
-                    }else{
-                        console.log('getCommits error')
-                    }
-                }.bind(this))
-            }
-        }.bind(this))
-    },
-    componentDidMount:function(){
-        //this.getInitialState();
-        this.getComments();
-        //setInterval(this.getComments(),1000)
-    },
-    render: function(){
-        return(
+    render:function(){
+        return (
             React.createElement("div", null, 
-                React.createElement("h1", null, "评论话题2"), 
                 React.createElement(List, {data: this.state.data}), 
                 React.createElement(Form, {onHandlerCommit: this.handlerCommite})
             )
         )
     }
 });
-var App=React.createClass({displayName: "App",
-    render:function(){
-        return (
-            React.createElement("div", null, 
-                React.createElement(Box, {data: this.props.data})
-            )
-        )
-    }
-});
 
-ReactDOM.render(React.createElement(App, {data: []}), document.getElementById('example'));
+//var docs=[];
+//var reactHTML=ReactDOMServer.renderToString(<App data={docs}/>);
+
+//console.log(reactHTML);
+//module.exports=function(){
+//    return reactHTML
+//}

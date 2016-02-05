@@ -40,6 +40,7 @@
     "mongoose": "^4.3.6",
     "morgan": "~1.6.1",
     "mysql": "^2.10.2",
+    "ng-grid": "^2.0.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-router": "^1.0.1",

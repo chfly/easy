@@ -1,0 +1,13 @@
+require('bootstrap_css')
+require('ng_grid_css')
+require('jquery')
+require('angular')
+require('angular-ui-router')
+require('angular-animate')
+require('ng_grid_js')
+
+require('../js/app')
+require('../js/animations')
+require('../js/controllers')
+require('../js/services')
+require('../js/filters')

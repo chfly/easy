@@ -16,15 +16,12 @@ var plugin=[];
 if(debug){
     entryConfig=
         {
-            app: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/app.js'],
-            home: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/home.js'],
-            data: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/data.js'],
-            comment: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/comment.js'],
-            router: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/router.js'],
-            reflux: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/reflux.js'],
-            isomorphic: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/isomorphic.js'],
-            //page_1: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_1.serverjs'],
-            //page_2: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/entry/pc/page_2.serverjs'],
+            //react entry file
+            react: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/react.js'],
+
+            //angular entry file
+            angular: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/angular/entry/angular.js'],
+
         }
      ;
     output={
@@ -41,7 +38,7 @@ if(debug){
             jQuery: "jquery",
             "window.jQuery": "jquery"
         }),
-        new HtmlWebpackPlugin({
+   /*     new HtmlWebpackPlugin({
             title:'EASY',
             favicon:'./src/view/icon/easy.ico',
             filename:'/view/admin.html',
@@ -52,7 +49,7 @@ if(debug){
                 removeComments:true,
                 collapseWhitespace:false
             }
-        })
+        })*/
     ]
 }else{
     entryConfig=[
@@ -131,7 +128,10 @@ module.exports={
         alias:{
             jquery:__dirname+'/node_modules/jquery/dist/jquery.min.js',
             bootstrap_js:__dirname+'/node_modules/bootstrap/dist/js/bootstrap.min.js',
-            bootstrap_css:__dirname+'/node_modules/bootstrap/dist/css/bootstrap.min.css'
+            bootstrap_css:__dirname+'/node_modules/bootstrap/dist/css/bootstrap.min.css',
+            ng_grid_css:__dirname+'/node_modules/ng-grid/ng-grid.css',
+            ng_grid_debug_js:__dirname+'/node_modules/ng-grid/ng-grid-2.0.1.debug.js',
+            ng_grid_js:__dirname+'/node_modules/ng-grid/ng-grid-2.0.1.min.js'
         }
     },
     plugins: plugin
