@@ -7,56 +7,38 @@ var gulp = require('gulp'),
     aliasCombo = require('gulp-alias-combo'),
     webpack=require('gulp-webpack'),
     react=require('gulp-react');
-    //livereload = require('gulp-livereload'),
-    //connect = require('gulp-connect');
-
-//server
-//gulp.task('angularServer', function() {
-//    connect.server({
-//        root: 'public/',
-//        port: 3001,
-//        livereload: true
-//    });
-//});
-//reload server
-//gulp.task('reload-dev',function() {
-//    gulp.src('public/tpls//**/*.html')
-//        .pipe(connect.reload());
-//});
 //move html
 gulp.task('tpls', function(){
     return gulp.src('./src/angular/tpls//**/*.html')
         .pipe(gulp.dest('public/tpls/'))
         .pipe(notify({message : 'Html task complete'}))
 })
+//jsx tranceform
 gulp.task('jsx',function(done){
-  return gulp.src('./src/react/entry/component//**/*.js')
-       .pipe(react())
-       .pipe(gulp.dest('./src/react/build/component/'))
+    return gulp.src('./src/react/entry/component//**/*.js')
+        .pipe(react())
+        .pipe(gulp.dest('./src/react/build/component/'))
         //.pipe(notify({message:"jsx task compelete"}))
-      .on('end', done);
+        .on('end', done);
 });
 gulp.task('server',function(done){
-   return gulp.src('./src/react/entry/entryServer//**/*.js')
-       //.pipe(aliasCombo({
-       //    baseUrl:__dirname+'/node_modules/',
-       //    alias:{
-       //        jquery:'jquery/dist/jquery.min.js',
-       //        bootstrap:'bootstrap/dist/js/bootstrap.min.js'
-       //    }
-       //}))
+    return gulp.src('./src/react/entry/entryServer//**/*.js')
+        //.pipe(aliasCombo({
+        //    baseUrl:__dirname+'/node_modules/',
+        //    alias:{
+        //        jquery:'jquery/dist/jquery.min.js',
+        //        bootstrap:'bootstrap/dist/js/bootstrap.min.js'
+        //    }
+        //}))
         .pipe(react())
         .pipe(gulp.dest('./src/react/build/server/'))
-       .on('end', done);
-       //.pipe(notify({message:"server task compelete"}))
+        .on('end', done);
+    //.pipe(notify({message:"server task compelete"}))
 });
 gulp.task('webpack',function(done){
-    //gulp.src('./src/react/entry/entryWebpack//**/*.js')
-    //gulp.src('./src/react/entry/entryWebpack/react.js')
-    //.pipe(webpack(require('./webpack.config')))
     webpack(require('./webpack.config'))
-    .pipe(gulp.dest('public/'))
-    .on('end', done);
+        .pipe(gulp.dest('public/'))
+        .on('end', done);
     //.pipe(notify({message:"Webpack task compelete"}))
 });
 gulp.task('watch',function(){
@@ -65,10 +47,9 @@ gulp.task('watch',function(){
     gulp.watch('./src/react/entry/entryServer//**/*.js',['server']);
     gulp.watch('./src/react/entry/entryWebpack//**/*.js',['webpack']);
     gulp.watch('./src/angular//**/*.js',['webpack']);
-    //监听生产环境目录变化
     //gulp.watch('public/tpls//**/*.html',['reload-dev']);
 });
-gulp.task('default',['tpls','jsx','server','webpack','webpackServer','watch']);
+gulp.task('default',['tpls','jsx','server','webpack','watch']);
 gulp.task('webpackServer',function(done){
     return gulp.src('./src/react/entry/entryWebpack//**/*.js')
         //.pipe(aliasCombo({
@@ -102,3 +83,20 @@ gulp.task('test',function(done){
         .on('end', done);
     //.pipe(notify({message:"test task compelete"}))
 });
+
+//var livereload = require('gulp-livereload'),
+//connect = require('gulp-connect');
+
+//server
+//gulp.task('angularServer', function() {
+//    connect.server({
+//        root: 'public/',
+//        port: 3001,
+//        livereload: true
+//    });
+//});
+//reload server
+//gulp.task('reload-dev',function() {
+//    gulp.src('public/tpls//**/*.html')
+//        .pipe(connect.reload());
+//});

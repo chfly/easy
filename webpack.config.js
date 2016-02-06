@@ -21,6 +21,7 @@ if(debug){
 
             //angular entry file
             //angular: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/angular/entry/angular.js'],
+
         }
      ;
     output={
@@ -37,18 +38,18 @@ if(debug){
             jQuery: "jquery",
             "window.jQuery": "jquery"
         }),
-        //new HtmlWebpackPlugin({
-        //    title:'EASY',
-        //    favicon:'./src/view/icon/easy.ico',
-        //    filename:'/view/index.html',
-        //    template:'./src/view/index.html',
-        //    inject:true,
-        //    hash:true,
-        //    minify:{
-        //        removeComments:true,
-        //        collapseWhitespace:false
-        //    }
-        //}),
+   /*     new HtmlWebpackPlugin({
+            title:'EASY',
+            favicon:'./src/view/icon/easy.ico',
+            filename:'/view/admin.html',
+            template:'./src/view/index.html',
+            inject:true,
+            hash:true,
+            minify:{
+                removeComments:true,
+                collapseWhitespace:false
+            }
+        })*/
     ]
 }else{
     entryConfig=[

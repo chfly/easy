@@ -1,17 +1,15 @@
 #node -v4.2.6 ;npm -v3.5.1
-#npm install -g supervisor
-#supervisor app.js
 #jsx -w src/admin/entry src/admin/entrybuild/
 #E:\mongodb\bin\mongod --dbpath e:\mongodb\db --logpath e:\mongodb\logs\mongodb.log --logappend
 #app env
-#1„ÄÅjdk ÔºåsdkÔºåant;ios...
-#2„ÄÅnpm install -g cordova ionic
-#3„ÄÅionic start myApp tabs
-#4„ÄÅcd myApp
-#5„ÄÅionic serve
-#6„ÄÅionic platform add android/ios
-#7„ÄÅionic run android/ios
-#8„ÄÅionic emulate android/ios
-#9„ÄÅionic build android/ios  
+#1°¢jdk £¨sdk£¨ant;ios...
+#2°¢npm install -g cordova ionic
+#3°¢ionic start myApp tabs
+#4°¢cd myApp
+#5°¢ionic serve
+#6°¢ionic platform add android/ios
+#7°¢ionic run android/ios
+#8°¢ionic emulate android/ios
+#9°¢ionic build android/ios  
 
 
