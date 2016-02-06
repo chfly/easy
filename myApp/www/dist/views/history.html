@@ -1,0 +1,15 @@
+<div class="navbar"><div class="navbar-inner od-top-nav ico-rss-bai"><div class="left"><a href="#" class="link back"><i class="icon icon-back icon-small"></i></a></div><div class="center od-dd"></div><div class="right"><a href="#" class=""><i class="icon-delete clearh" style="color:#fff;font-size:1rem;display:none"></i></a> <a href="#" class="quan-top"><i class="rss-dt-ico"></i></a></div></div></div><div class="pages"><div class="page no-navbar no-toolbar toolbar-fixed plugins-multiple-screen" data-page="history" data-title="浏览记录"><div class="page-content"><div id="history"></div></div><script type="text/template7" id="his"><div class="mf-opj">
+                <ul class="mf-abjk">
+                    {{#each history}}
+                    <li><a href="views/product-detail.html?skuId={{sku_id}}">
+                        <p class="mf-jsa"><img src={{product_image}}></p>
+                        <p class="mf-kopi">{{product_name}}</p>
+                        <div class="mf-tyew">
+                            <p class="mf-irew"><span>¥{{p_price}}</span>
+                                <del>¥{{m_price}}</del>
+                            </p>
+                        </div>
+                    </a></li>
+                    {{/each}}
+                </ul>
+            </div></script></div></div>

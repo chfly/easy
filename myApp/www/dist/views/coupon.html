@@ -1,0 +1,32 @@
+<div class="navbar"><div class="navbar-inner od-top-nav ico-rss-bai"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div class="page no-navbar no-toolbar toolbar-fixed plugins-multiple-screen" data-page="coupon" data-title="我的优惠卷"><div class="page-content"><div id="coupon"></div></div><script type="text/template7" id="co"><div class="ty-volume">
+                <div class="ty-nvda">
+                    <ul>
+                        <li class="cur"><a href="#tab1" class="tab-link active">未使用</a></li>
+                        <li><a href="#tab2" class="tab-link" id="t_two">已使用</a></li>
+                        <li><a href="#tab3" class="tab-link" id="t_there">已过期</a></li>
+                    </ul>
+                </div>
+                <div class="ty-book tabs">
+                    <ul class="tab ty-dis active" id="tab1">
+                        {{#each coupon}}
+                        <li class="ty-gg">
+                            <a href="#" data-coupon="{{coupon_code}}" data-status="1">
+                                <div class="ty-lghf"><i class=""></i><span class="span1 teshu">{{coupon_type}}</span></div>
+                                <div class="ty-rgfo">
+                                    <p>¥{{denomination}}</p>
+                                    <p>{{range_type_text}}</p>
+                                </div>
+                                <div class="ty-trapezoid ty-trapezoid-one">{{use_channels}}</div>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <!--  /第二屏幕/ -->
+                    <ul class="tab ty-dis" id="tab2">
+                    </ul>
+                    <!--  /第三屏幕/ -->
+                    <ul class="tab ty-dis" id="tab3">
+                    </ul>
+                </div>
+            </div>
+    </div></script></div></div>

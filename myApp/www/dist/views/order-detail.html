@@ -1,0 +1,163 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="orderDetail" class="page no-navbar no-toolbar toolbar-fixed" data-title="订单详情"><div class="page-content"></div><script type="text/template7" id="toolbar2"><div class="toolbar tabbar tabbar-labels">
+                <div class="toolbar-inner row">
+                    <div class="col-50">
+                        <a href="#" id="orderCancel" data-parent-order-id="{{parentOrderId}}" class="btn btn-large btn-full">取消订单</a>
+                    </div>
+                    <div class="col-50">
+                        <a href="#" id="wxPay" data-parent-order-id="{{parentOrderId}}" class="btn btn-red btn-large btn-full">立即付款</a>
+                    </div>
+                </div>
+            </div></script><script type="text/template7" id="toolbar8"><div class="toolbar tabbar tabbar-labels">
+                <div class="toolbar-inner row">
+                    <div class="col-100">
+                        <a href="#" data-order-id="{{orderId}}" id="recipt" class="btn btn-red btn-large btn-full">确认收货</a>
+                    </div>
+                </div>
+            </div></script><script type="text/template7" id="payCountDown">{{#if payCountDown}}请在{{payCountDownHour}}时{{payCountDownMinute}}分{{payCountDownSecond}}秒内付款{{else}}未支付超时，已关闭{{/if}}</script><script type="text/template7" id="orderDetail"><div class="content-block img-border-top postcard-border">
+                <div class="content-block-inner background-color-softYella row padding-auto-15px">
+                    <div class="col-50 padding-10px font-size-16px font-weight-bold"><i class="icon-touxiang color-red"></i>{{consigneeName}}</div>
+                    <div class="col-50 padding-10px font-size-16px font-weight-bold"><i class="icon-phone color-red"></i>{{consigneePhone}}</div>
+                    <div class="col-100 padding-10px font-size-12px padding-top-0">{{consigneeAddress}}</div>
+                </div>
+            </div>
+            <div class="content-block list-view list-block media-list">
+                <div class="content-block-inner">
+                    <div class="content-block-title">
+                        <div>商品清单</div>
+                        <div id="payCountDown" class="color-red">
+                            {{#js_compare "this.orderStatusValue === 4"}}待发货{{/js_compare}} {{#js_compare "this.orderStatusValue === 8"}}待收货{{/js_compare}} {{#js_compare "this.orderStatusValue === 32"}}已完成{{/js_compare}} {{#js_compare "this.orderStatusValue === -1"}}已取消{{/js_compare}} {{#js_compare "this.orderStatusValue === -2"}}已关闭{{/js_compare}}
+                        </div>
+                    </div>
+                    {{#each goods}}
+                    <div class="item-link item-small item-content item-after-right-bottom">
+                        <div class="item-media">
+                            <a href="views/product-detail.html?skuId={{skuId}}"><img src="{{img}}"></a>
+                        </div>
+                        <a class="item-inner" href="views/product-detail.html?skuId={{skuId}}">
+                            <div class="item-text">{{title}}</div>
+                            <div class="color-gray">{{attr}}</div>
+                            <div><span class="price-symbol">{{price}}</span>x{{amount}}{{#if gift}}<span class="color-red small"><i class="icon-gift"></i>{{gift}}</span>{{/if}}</div>
+                            <div class="item-after"></div>
+                        </a>
+                    </div>
+                    {{/each}}
+                    <div class="block-title display-flex-justify-content-space-between">
+                        <div></div>
+                        <div>共{{goodsAmount}}件商品，{{giftAmount}}件赠品</div>
+                    </div>
+                </div>
+            </div>  
+            <div class="list-block">
+            {{#js_compare "this.orderStatusValue=='2'"}}
+                <div class="accordion-item accordion-item-payType" >
+                    <div class="item-content item-link">
+                        <div class="item-inner accordion-item-toggle">
+                            <div class="item-title">支付方式</div>
+                            <div class="item-after color-red" id="payType">请选择</div>
+                        </div>
+                    </div>
+                    <div class="list-view media-list accordion-item-content">
+                        <div class="item-content" style="height:auto;">
+                            <div class="item-inner list-block">
+                              <ul>
+                                {{#if microMessenger}}
+                                <li>
+                                  <label class="label-radio item-content" style="height:auto;">
+                                    <input type="radio" name="payType" value="wxPay">
+                                    <div class="item-inner">
+                                      <div class="item-title">微信</div>
+                                    </div>
+                                  </label>
+                                </li>
+                                <li>
+                                  <label class="label-radio item-content" style="height:auto;">
+                                    <input type="radio" name="payType" value="abcPay">
+                                    <div class="item-inner">
+                                      <div class="item-title">农行支付</div>
+                                    </div>
+                                  </label>
+                                </li>
+                                {{else}}
+                                <li>
+                                  <label class="label-radio item-content" style="height:auto;">
+                                    <input type="radio" name="payType" value="aliPay">
+                                    <div class="item-inner">
+                                      <div class="item-title">支付宝</div>
+                                    </div>
+                                  </label>
+                                </li>
+                                <li>
+                                  <label class="label-radio item-content" style="height:auto;">
+                                    <input type="radio" name="payType" value="abcPay">
+                                    <div class="item-inner">
+                                      <div class="item-title">农行支付</div>
+                                    </div>
+                                  </label>
+                                </li>
+                                {{/if}}
+                                
+                              </ul>  
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+            {{else}}
+                <div class="item-content item-link">
+                    <div class="item-inner">
+                        <div class="item-title">支付方式</div>
+                        {{#if payStyle}}
+                        <div class="item-after">{{payStyle}}</div>
+                        {{else}}
+                        {{/if}} 
+                    </div>
+                </div>
+            {{/js_compare}} 
+            </div> 
+            <div class="list-block media-list">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">发票信息</div>
+                    </div>
+                </div>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-subtitle">发票标题：{{invoiceTitle}}</div>
+                        <div class="item-subtitle">发票内容：{{invoiceContent}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-block media-list">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title display-flex-justify-content-space-between">
+                            <div>商品总额</div>
+                            <div class="color-red"><span class="price-symbol">{{totalPay}}</span></div>
+                        </div>
+                        <div class="item-subtitle display-flex-justify-content-space-between">
+                            <div>运费</div>
+                            <div class="color-red">+ <span class="price-symbol">{{freight}}</span></div>
+                        </div>
+                        <div class="item-subtitle display-flex-justify-content-space-between">
+                            <div>优惠</div>
+                            <div class="color-red">- <span class="price-symbol">{{preferential}}</span></div>
+                        </div>
+                        <div class="block-title display-flex-justify-content-space-between border-top">
+                            <div></div>
+                            <div class="">实付款：<span class="price-symbol color-red">{{finalPay}}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-content">
+                    <div class="item-inner color-gray">
+                        <div class="item-subtitle">订单编号：{{orderId}}</div>
+                        <div class="item-subtitle">下单时间：{{startTime}}</div>
+                        <div class="item-subtitle">完成时间：{{endTime}}</div>
+                    </div>
+                </div>
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-subtitle">留言：</div>
+                        <div class="color-gray">{{leaveMessage}}</div>
+                    </div>
+                </div>
+            </div></script></div></div>

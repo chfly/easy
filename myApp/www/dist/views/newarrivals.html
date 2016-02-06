@@ -1,0 +1,36 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="newarrivals" class="page no-navbar no-toolbar plugins-show-on-scroll-up plugins-swipe-move" data-title=""><script type="text/template7" id="bannerTpls">{{#js_compare "this.href || this.ac"}}
+                {{#if href}}<!--普通跳转链接-->
+                    <a href="{{href}}" title="{{title}}"><img src="{{img}}"></a>
+                {{else}}
+                    {{#if lt}}<!--常规活动-->
+                    <a href="#" data-ac="{{ac}}" data-lt="{{lt}}" class="activity"><img src="{{img}}"></a>
+                    {{else}}<!--分享-->
+                    <a href="#" data-ac="{{ac}}" class="share"><img src="{{img}}"></a>
+                    {{/if}}
+                {{/if}}
+            {{else}}
+                <img src="{{img}}">
+            {{/js_compare}}</script><script type="text/template7" id="bannerTpl">{{#each this}}
+            <div class="content-block content-block-padding-0" style="margin:0;">
+                <div class="content-block-inner">
+                    <a title="{{title}}" href="{{href}}" class="width-100per" data-eventId="home_newproductknow_banner">
+                        <img src="{{img}}" style="min-height: 4rem;">
+                    </a>
+                </div>
+            </div>
+            {{/each}}</script><script type="text/template7" id="prodTpl">{{#each this}}
+                <li class="item-content item-after-right-bottom">
+                    <div class="item-media">
+                        <a href="views/product-detail.html?skuId={{skuId}}" data-eventId="home_newproductknow_productlist"><img data-src="{{img}}" class="lazy lazy-fadein"></a>
+                    </div>
+                    <div class="item-inner" style="position:relative; padding-left:16px; padding-right:16px;">
+                        <a href="views/product-detail.html?skuId={{skuId}}" style="color:#333;" data-eventId="home_newproductknow_productlist">
+                            <div class="item-text" style="font-size: 0.541rem; line-height: 0.8116rem; height: 1.623rem;">{{title}}
+                            </div>
+                            <div class="item-subtitle padding-vertical-5px"><span class="price-symbol margin-right-10px" style="font-size:0.53rem;color:#333;">{{sprice}}</span><span class="price-symbol" style="color:#999;font-size:0.45rem;"><span class="line-through">{{mprice}}</span></span>
+                            </div>
+                        </a>
+                        <a href="#" class="addFavour" data-skuid="{{skuId}}" style="position:absolute; bottom:0.5rem;right:0.3rem;"><i class="icon-heart-outline"></i></a>
+                    </div>
+                </li>
+            {{/each}}</script><div class="page-content"><style type="text/css">.addFavour i{font-size:.7rem;color:#da3784;margin-right:.4rem}.home-fixed-button{position:absolute;z-index:100;bottom:1.2rem;right:.71rem;transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out;transform:translate3d(80px,0,0);-webkit-transform:translate3d(80px,0,0)}.home-fixed-button div{color:#fff;width:1.78rem;height:1.78rem;background-color:#000;opacity:.5;margin-top:.44rem;font-size:.9rem;text-align:center;line-height:1.98rem;border-radius:6px}</style><div id="banner"></div><div class="content-block content-block-padding-0" style="margin:0"><div class="content-block-inner"><div id="prod" class="list-block media-list large-view virtual-list"></div></div></div></div><div class="home-fixed-button" id="na-home-fixed-button"><div id="na-scroll-to-top"><i class="icon-to-top"></i></div></div></div></div>

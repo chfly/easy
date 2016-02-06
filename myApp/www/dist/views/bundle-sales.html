@@ -1,0 +1,112 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="bundle-sales" class="page no-navbar no-toolbar plugins-show-on-scroll-up plugins-swipe-move scroll-trans" data-title=""><script type="text/template7" id="bannerTpls">{{#js_compare "this.href || this.ac"}}
+                {{#if href}}<!--普通跳转链接-->
+                    <a href="{{href}}" title="{{title}}"><img src="{{img}}"></a>
+                {{else}}
+                    {{#if lt}}<!--常规活动-->
+                    <a href="#" data-ac="{{ac}}" data-lt="{{lt}}" class="activity"><img src="{{img}}"></a>
+                    {{else}}<!--分享-->
+                    <a href="#" data-ac="{{ac}}" class="share"><img src="{{img}}"></a>
+                    {{/if}}
+                {{/if}}
+            {{else}}
+                <img src="{{img}}">
+            {{/js_compare}}</script><script type="text/template7" id="bannerTpl"><div class="content-block content-block-padding-0" style="margin:0;">
+                <div class="content-block-inner">
+                    <a href="#" class="width-100per" data-eventId="home_quotaoption_banner">
+                        <a href="#" class="width-100per time" >活动有效期：{{start_time}} — {{end_time}}</a>
+                        <img src="{{src}}" style="min-height: 4rem;">
+                    </a>
+                </div>
+            </div></script><script type="text/template7" id="ruleTpl"><div class="content-block content-block-padding-0 rule" style="margin:0;">
+                <div class="content-block-inner">
+
+                    <a href="#" class="width-100per" ><i class="icon-list-item"></i>{{text}}</a>
+                </div>
+            </div></script><script type="text/template7" id="prodTpl">{{#each this}}
+                <li class="prod width-100per" data-skuid="{{skuId}}" data-pId="{{pId}}">
+                    <div class="item-img">
+                        <a href="views/product-detail.html?skuId={{skuId}}" data-eventId="home_quotaoption_productlist"><img data-src="{{img}}" class="lazy lazy-fadein"></a>
+                    </div>
+                    <div class="item-exp" style="position:relative; padding-left:5px; padding-right:5px;">
+                        <a href="views/product-detail.html?skuId={{skuId}}" style="color:#333;" data-eventId="home_quotaoption_productlist">
+                            <div class="item-intro" style="white-space: normal;">{{title}}
+                            </div>
+                            <div class="item-subtext" style="font-size:0.67rem;color:{{#js_compare "this.stock >= this.startNum"}}#da3784{{else}}#999{{/js_compare}};">单品价：<span class="price-symbol margin-right-10px" style="font-size:0.67rem;">{{sprice}}</span><br><span class="line-through" style="color:#999;font-size:0.5rem;font-weight:normal;">市场价：<span class="price-symbol">{{mprice}}</span></span>
+                            </div>
+                        </a>
+                        <a href="#" class="item-btn{{#js_compare "this.stock >= this.startNum"}} sale-item-btn{{else}} saleout-item-btn{{/js_compare}}" data-skuid="{{skuId}}" style="position:absolute; bottom:0.5rem;right:0.3rem;">马上选购</a>
+                    </div>
+                    {{#js_compare "this.stock < this.startNum"}}
+                    <div class="saleout-stamp"><i class="icon-sale-out"></i>   
+                    </div>{{/js_compare}} 
+                </li>
+            {{/each}}</script><script type="text/template7" id="bspopupHead"><div class="list-block media-list">
+                <div class="item-content item-after-right-top">
+                    <div class="item-media border-bottom"><a href="views/product-detail.html?skuId=10210102000043"><img id="logo" src={{logo}} width="60"></a>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title"><span id="price" class="price-symbol color-red font-size-18px">{{alj}}</span></div>
+                            <div class="item-after"><a href="#" class="close-popup btn btn-link"><i class="icon-x icon-large"></i></a>
+                            </div>
+                        </div>
+                        <div class="item-subtitle">
+                            库存<span id="stocks">{{skus.stocks}}</span>件
+                        </div>
+                        <div class="item-subtitle color-gray">
+                            {{#if attrs.length}}<span class="pleaseChiose">请选择 </span>{{/if}} {{#each attrs}}
+                            <span class="attr-tip-{{@index}}">{{name}} </span> {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div></script><script type="text/template7" id="bspopupCenter"><div class="content-block">
+                {{#each attrs}}
+                <div class="row row-2 display-flex">
+                    <div class="padding-vertical-10px text-align-center vertical-align-middle height-44px col-15">{{name}}</div>
+                    <div class="padding-vertical-10px border-bottom col-85 attr-{{@index}} attr" data-attr-index="{{@index}}" data-tip="attr-tip-{{@index}}">
+                        {{#each value}}
+                        <span class="skuBtn btn btn-gray btn-margin {{#if this}}{{else}}disabled{{/if}}">{{@key}}</span> {{/each}}
+                    </div>
+                </div>
+                {{/each}}
+                <div class="row row-2 display-flex">
+                    <div class="padding-vertical-10px text-align-center vertical-align-middle height-44px col-15">数量</div>
+                    <div class="padding-vertical-10px border-bottom col-85">
+                        <div class="padding-top-5px">
+                            <span class="count-control">
+                                <a href="#" id="substructionBtn" class="btn btn-gray btn-medium"><i class="icon-substruction"></i></a>
+                                <input type="text" value='{{#js_compare "this.stocks >= 1"}}1{{else}}0{{/js_compare}}' id="buyCount" class="pointer-events-none">
+                                <a href="#" id="addBtn" class="btn btn-gray btn-medium"><i class="icon-add"></i></a>
+                            </span>
+                            <span class="color-gray">1件起售</span>
+                        </div>
+                    </div>
+                </div>
+            </div></script><script type="text/template7" id="bspopupFooter"><a class='addList btn btn-red btn-large btn-full{{#js_compare "this.stocks < this.startCount || this.stocks === 0"}} disabled{{/js_compare}}'>{{#js_compare "this.stocks < this.startCount && this.stocks > 0 "}}库存不足{{else}}{{#js_compare "this.stocks === 0"}}已售罄{{else}}加入购物清单{{/js_compare}}{{/js_compare}}</a></script><script type="text/template7" id="bspopover"><div class="content-block-title" style="border:none;">
+            </div>
+            {{#if goods.length}}
+                {{#each goods}}
+                <div class="swipeout" >
+                    <div class="item-link item-small item-content item-after-right-bottom swipeout-content" style="background: rgba(255, 255, 255, 0.95);">
+                        <a class="item-media" href="#" data-skuid="{{skuId}}" data-pId="{{pId}}"><img src="{{img}}"></a>
+                        <a class="item-inner" href="#">
+                            <div class="item-text">{{title}}</div>
+                            <div class="color-gray">{{attr}}</div>
+                            <div><span class="price-symbol">{{price}}</span>x{{amount}}</div>
+                            <div class="item-after"></div>
+                        </a>
+                    </div>
+                    <div class="swipeout-actions-right">
+                        <a href="#" class="deleteSwipeout background-color-red" data-skuid="{{skuId}}">删除</a>
+                    </div>
+                </div>
+                <div class="block-title display-flex-justify-content-space-between">
+                    <div></div>
+                    <div class="color-red small">单品价：<span class="price-symbol">{{js "(this.price*this.amount).toFixed(2)"}}</span></div>
+                </div>
+                {{/each}}
+            {{else}}
+            <div class="full-tips popover-tips">
+                <i class="icon-search icon-large"></i>还未添加心仪商品噢~
+            </div>
+            {{/if}}</script><div class="page-content"><style type="text/css">.scroll-trans{transition:width 1s ease-in-out;-webkit-transition:width 1s ease-in-out}.addFavour i{font-size:.7rem;color:#da3784;margin-right:.4rem}.home-fixed-button{position:absolute;z-index:100;bottom:1.2rem;right:.71rem;transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out;transform:translate3d(80px,0,0);-webkit-transform:translate3d(80px,0,0)}.home-fixed-button div{color:#fff;width:1.78rem;height:1.78rem;background-color:#000;opacity:.5;margin-top:.44rem;font-size:.9rem;text-align:center;line-height:1.98rem;border-radius:6px}.prod{height:5.78rem;position:relative;overflow:hidden;border-top:1px solid #f0f0f0}.item-img{position:absolute;width:37.78%;padding:11px 11px 9px 17px;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.item-subtext{font-size:.667rem;font-weight:700;color:#888;position:absolute;top:3rem}.item-exp{position:relative;left:37.78%;height:100%;width:60%;-webkit-box-sizing:border-box;box-sizing:border-box}.icon-list-item{display:inline-block;margin-right:.25rem;color:#f34}.time{position:absolute;bottom:0;height:1.33rem;background-color:#000;opacity:.68;font-size:.44rem;color:#fff;text-align:center;line-height:1.33rem}.rule{font-size:.53rem;line-height:1.33rem;color:#333}.rule a{display:inline-block;height:1.33rem;padding-left:.4rem;background-color:#f5f5f5}.item-intro{text-align:left;display:inline-block;line-height:.8rem;font-size:.63rem;color:#333;position:absolute;top:.8rem;overflow:hidden;height:2.5em}.item-btn{display:inline-block;width:2.8rem;height:1.05rem;font-size:.55rem;line-height:1.05rem;text-align:center;color:#da3784;border-radius:.2rem;border:1px solid #da3784}.saleout-item-btn{color:#999;border:1px solid #999}.foot-btn{position:absolute;z-index:10;bottom:0;width:100%;height:2.35rem;background-color:#fff;font-size:.62rem;line-height:2.35rem;border-top:1px solid #ddd}.foot-btn .list-btn{display:inline-block;width:25%;margin:0 3% 0 7%;text-align:center;vertical-align:middle;color:#333}.foot-btn .list-btn b{color:#da3784}.list-btn i{font-size:.73rem;color:#e4393c;vertical-align:middle;-webkit-vertical-align:middle;display:inline-block;margin-right:.12rem;z-index:11}.foot-btn .bs-sub{display:inline-block;width:38%;margin-left:10%;font-size:.71rem;text-align:center;background-color:#bababa;border-radius:.4rem;color:#fff;border:none;height:1.7rem;line-height:1.7rem;vertical-align:middle}.addsub-num{height:.7rem;width:.7rem;display:inline-block;font-size:.53rem;text-align:center;line-height:.7rem;vertical-align:middle}.animate-logo{position:absolute;left:10px;height:60px;width:60px;z-index:9;border:1px solid #e4393c;border-radius:30px;overflow:hidden}.saleout-stamp{position:absolute;bottom:2.6rem;left:3.5rem}.saleout-stamp i{font-size:3rem;color:#f17d5e}@keyframes zoomOutDown{40%{opacity:1;transform:scale3d(.475,.475,.475) translate3d(0,-2.32rem,0);animation-timing-function:cubic-bezier(.55,.055,.675,.19)}70%{opacity:.1}100%{opacity:0;transform:scale3d(.1,.1,.1) translate3d(1.4rem,80rem,0);transform-origin:center bottom;animation-timing-function:cubic-bezier(.175,.885,.32,1)}}@-webkit-keyframes zoomOutDown{40%{opacity:1;-webkit-transform:scale3d(.475,.475,.475) translate3d(0,-2.32rem,0);-webkit-animation-timing-function:cubic-bezier(.55,.055,.675,.19)}70%{opacity:.1}100%{opacity:0;-webkit-transform:scale3d(.1,.1,.1) translate3d(1.4rem,80rem,0);-webkit-transform-origin:center bottom;-webkit-animation-timing-function:cubic-bezier(.175,.885,.32,1)}}.zoomOutDown{animation-name:zoomOutDown;-webkit-animation-name:zoomOutDown}@-webkit-keyframes bounce{0%,100%,20%,53%,80%{-webkit-transition-timing-function:cubic-bezier(.215,.61,.355,1);-webkit-transform:translate3d(0,0,0)}40%,43%{-webkit-transition-timing-function:cubic-bezier(.755,.050,.855,.060);-webkit-transform:translate3d(0,-.3rem,0)}70%{-webkit-transition-timing-function:cubic-bezier(.755,.050,.855,.060);-webkit-transform:translate3d(0,-.15rem,0)}90%{-webkit-transform:translate3d(0,-.05rem,0)}}@keyframes bounce{0%,100%,20%,53%,80%{transition-timing-function:cubic-bezier(.215,.61,.355,1);transform:translate3d(0,0,0)}40%,43%{transition-timing-function:cubic-bezier(.755,.050,.855,.060);transform:translate3d(0,-.3rem,0)}70%{transition-timing-function:cubic-bezier(.755,.050,.855,.060);transform:translate3d(0,-.15rem,0)}90%{transform:translate3d(0,-.05rem,0)}}.bounce{-webkit-animation-name:bounce;-webkit-transform-origin:center bottom;animation-name:bounce;transform-origin:center bottom}.foot-btn .suc{background-color:#f35}a.suc:active{color:#fff;background-color:#ff183e}.popover-tips{height:100%;padding:2rem 0}.popover-tips i{font-size:4rem}</style><div id="bs-banner"></div><div id="rule"></div><div class="content-block content-block-padding-0" style="margin:0;margin-bottom:2.35rem"><div class="content-block-inner"><div id="bs-prod" class="list-block media-list large-view virtual-list"></div></div></div></div><div id="animate-logo"><img src="" width="60"></div><div class="foot-btn"><a class="list-btn"><i class="icon-shopping-list"></i>已选清单</a> <a class="bs-sub btn-large btn-full">加入购物车</a></div><div class="home-fixed-button" id="bs-home-fixed-button" style="bottom:2.5rem"><div id="bs-scroll-to-top"><i class="icon-to-top"></i></div></div></div></div>

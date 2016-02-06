@@ -1,0 +1,110 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="shoppingCart" class="page no-navbar no-toolbar toolbar-fixed" data-title="购物车"><div class="page-content"></div><script type="text/template7" id="toolbar">{{#if groups.length}}
+            <div class="toolbar tabbar tabbar-labels background-color-transparent">
+                <div class="toolbar-inner background-color-black">
+                    <label class="label-checkbox selectAll">
+                        <input type="checkbox" {{#if checkedAll}} checked="checked" {{/if}}>
+                        <div class="item-media width-3rem text-align-center">
+                            <i class="icon icon-form-checkbox"></i>
+                            <span class="white-space-nowrap">全选</span>
+                        </div>
+                    </label>
+                    <div>
+                        <div class="text-align-center font-size-14px">合计:<span class="price-symbol">{{finalPay}}</span></div>
+                        <small class="font-size-12px">总额:<span class="price-symbol">{{totalPrice}}</span>&nbsp;优惠:<span class="price-symbol">{{preferential}}</span></small>
+                    </div>
+                    <a href="#" id="footUp" class="btn btn-red btn-large">去结算({{amount}})</a>
+                </div>
+            </div>
+            {{/if}}</script><script type="text/template7" id="exchange">{{#each groups}}
+            <div class="popup exchange-popup exchange{{code}}">
+                <div class="popup-head text-align-center background-color-softPink">
+                    请选择单个换购商品
+                </div>
+                <div class="popup-inner list-view list-block media-list">
+                    {{#each exchangeGoods}}
+                    <div class="item-link item-small item-content item-after-right-bottom swipeout-content">
+                        <label class="item-media label-checkbox">
+                            <input type="checkbox" data-main-code="{{../code}}" data-skuid="{{skuId}}" {{#if store}}{{else}} disabled="disabled" {{/if}} {{#if selected}} checked="checked" {{/if}}>
+                            <i class="icon-form-checkbox"></i>
+                        </label>
+                        <a class="item-media close-popup" href="views/product-detail.html?skuId={{skuId}}"><img src="{{img}}"></a>
+                        <a class="item-inner close-popup" href="views/product-detail.html?skuId={{skuId}}">
+                            <div class="item-text"><span class="color-red">(换购商品)</span>{{title}}</div>
+                            <div class="color-gray">{{attr}}</div>
+                            <div><span class="price-symbol">{{price}}</span></div>
+                            <div class="item-after"></div>
+                        </a>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="popup-footer">
+                    <div class="row">
+                        <div class="col-50">
+                            <a href="#" class="close-popup btn btn-large btn-full">取消</a>
+                        </div>
+                        <div class="col-50">
+                            <a href="#" data-exchangeSelectedSkuid="{{exchangeSelectedSkuid}}" class="exchangeSave btn btn-red btn-large btn-full">保存</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}</script><script type="text/template7" id="cart">{{#if groups.length}}
+                <a href="#" id="multiDelete" class="btn btn-full btn-red btn-large">
+                    <i class="icon-delete icon-large"></i>
+                </a>
+                <div class="block-title" style="background-color: #fff; margin-bottom: -10px;">
+                    <div class="color-red small">{{shipFreeInfo}}</div>
+                </div>
+                {{#each groups}}
+                <div class="content-block list-view list-block media-list" data-code="{{code}}">
+                    <div class="content-block-inner">
+                        <div class="content-block-title">
+                            <div class="text-align-left">                       
+                                {{#if offerInfo}}
+                                <div class="color-red">·<small>{{offerInfo}}</small></div>
+                                {{/if}} {{#if exchangeInfo}}
+                                <div class="color-red">·<small>{{exchangeInfo}}</small></div>
+                                {{/if}}
+                            </div>
+                            <div>
+                                {{#if exchangeGoods.length}}
+                                <a href="#" data-popup=".exchange{{code}}" class="open-popup btn btn-small">换购商品</a> {{/if}}
+                            </div>
+                        </div>
+                        {{#each goods}}
+                        <div class="swipeout">
+                            <div class="item-link item-small item-content item-after-right-bottom swipeout-content">
+                                <label class="item-media label-checkbox">
+                                    {{#if exchange}}<i class="icon-exchange color-red icon-medium"></i>{{else}}
+                                    <input type="checkbox" data-main-code="{{../../code}}" data-detail-code="{{code}}" {{#if selected}} checked="checked" {{/if}}>
+                                    <i class="icon-form-checkbox"></i>{{/if}}
+                                </label>
+                                <a class="item-media" href="views/product-detail.html?skuId={{skuId}}"><img src="{{img}}"></a>
+                                <a class="item-inner" href="views/product-detail.html?skuId={{skuId}}">
+                                    <div class="item-text">{{#if exchange}}<span class="color-red">(换购商品)</span>{{/if}}{{title}}</div>
+                                    <div class="color-gray">{{attr}}</div>
+                                    <div><span class="price-symbol">{{price}}</span>x{{amount}}{{#if giftAmount}}<span class="color-red small"><i class="icon-gift"></i>赠品x{{giftAmount}}</span>{{/if}}</div>
+                                    <div class="item-after"></div>
+                                </a>
+                            </div>
+                            <div class="swipeout-actions-right">
+                                <a href="#" class="closeSwipeout">取消</a>
+                                <a href="#" data-exchange="{{#if exchange}}true{{else}}false{{/if}}" class="deleteSwipeout background-color-red" data-main-code="{{../code}}" data-detail-code="{{code}}" data-skuid="{{skuId}}">删除</a>
+                            </div>
+                        </div>
+                        {{#if exchange}}{{else}}
+                        <div class="block-title display-flex-justify-content-space-between">
+                            <div></div>
+                            <div class="color-red small">小计：<span class="price-symbol">{{subPay}}</span></div>
+                        </div>
+                        {{/if}} {{/each}}
+                    </div>
+                </div>
+                {{/each}}
+            {{else}}
+            <div class="full-tips">
+                <i class="icon-search icon-large"></i> 购物车还是空的哦！
+                <!--<br><br>
+                <a href="http://app.aolaigo.com/home.html" class="btn btn-red btn-large">马上逛逛</a>-->
+            </div>
+            {{/if}}</script></div></div>

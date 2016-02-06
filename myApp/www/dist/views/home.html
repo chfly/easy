@@ -1,0 +1,110 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center">加载中...</div><div class="right"></div></div></div><div class="pages"><div data-page="home" class="page no-swipeback no-navbar" style="background-color:#f0f0f0" data-title="奥莱购首页"><script type="text/template7" id="swiperTpl"><div class="swiper-slide"><a title="{{title}}" href="{{href}}" class="width-100per" data-eventId="home_banner"><img src="{{img}}"></a></div></script><script type="text/template7" id="bTpl"><div class="content-block content-block-padding-0 border-b" style="margin:0;">
+            <div class="content-block-inner row width-100per" style="min-height: 2rem;">
+            {{#each this}}
+                <div class="home-icon col-{{this.percent}} {{#js_compare "this.title=='分类'"}} category{{/js_compare}}" data-Type={{#if this.type}}{{this.type}}{{else}}"0"{{/if}}  >
+                    <a title="{{this.title}}" href="{{this.href}}"  data-eventId="home_icon{{@index}}">
+                        <img src="{{this.img}}" style="min-height: 2rem;">
+                        <!--<span class="home-icon-title">{{this.title}}</span>暂时不支持，因为title中文使ios1.6以下无法跳转模板页-->
+                    </a>
+                </div>
+            {{/each}}
+            </div>
+        </div></script><script type="text/template7" id="cTpl"><div class="swiper-slide"><a title="{{bname}}" href="{{href}}" class="width-100per" data-eventId="home_daily_hotspots">{{title}}</a></div></script><script type="text/template7" id="dTpl">{{#each this}}
+                    <a title="{{title}}" href="{{href}}" class="width-100per" data-eventId="home_instant_activity">
+                        <img src="{{img}}">
+                    </a>
+            {{/each}}</script><script type="text/template7" id="eTpl" style="position:relative"><a title="{{this[0].title}}" href="{{this[0].href}}" data-eventId="home_sooner_or_later">
+                {{#js_compare "this.isShow == '1'"}}<div class="count-down" id="count-down" style="position:absolute; left: 50%; top: 18.5%; margin-left:-35%; {{#js_compare "this.status == '1'"}}color:#ff5c77;{{else}}color:#999;{{/js_compare}}"><span>00</span>:<span>00</span>:<span>00</span></div>{{else}}{{/js_compare}}
+                <img src="{{this[0].img}}" style="min-height: 3rem;">
+            </a></script><script type="text/template7" id="f1Tpl"><a title="{{this.title}}" href="{{this.href}}" data-eventId="home_new_exclusive">
+                <img src="{{this.img}}" style="min-height: 3rem;">
+            </a></script><script type="text/template7" id="f2Tpl"><a title="{{this.title}}" href="{{this.href}}" data-eventId="home_new_product_know">
+                <img src="{{this.img}}" style="min-height: 3rem;">
+            </a></script><script type="text/template7" id="gTpl">{{#each this}}
+            <div class="content-block content-block-padding-0" style="margin:0;">
+                <div class="content-block-inner">
+                    <a title="{{title}}" href="{{href}}" class="width-100per" data-eventId="home_brand_recommendation">
+                        <img src="{{img}}">
+                    </a>
+                </div>
+            </div>
+            {{/each}}</script><script type="text/template7" id="h1Tpl"><div class="col-40" style="width:41.6666667%">
+                <a title="{{this[0].title}}" href="{{this[0].href}}" class="width-100per" style="display:inline-block;" data-eventId="home_local_specialty">
+                    <img data-src="{{this[0].img}}" class="lazy lazy-fadein" style="height:7.55555556rem;">
+                </a>
+            </div>
+            <div class="col-60 border-l" style="width:58.3333334%">
+                <div class="col-100 border-b">
+                    <a title="{{this[1].title}}" href="{{this[1].href}}" class="width-100per" style="display:inline-block;" data-eventId="home_local_specialty">
+                        <img data-src="{{this[1].img}}" class="lazy lazy-fadein" style="height:3.77777778rem;">
+                    </a>
+                </div>
+                <div class="col-100">
+                    <a title="{{this[2].title}}" href="{{this[2].href}}" class="width-100per" style="display:inline-block;" data-eventId="home_local_specialty">
+                        <img data-src="{{this[2].img}}" class="lazy lazy-fadein" style="height:3.77777778rem;">
+                    </a>
+                </div>
+            </div></script><script type="text/template7" id="h2Tpl"><div class="col-33 border-r">
+                <a title="{{this[3].title}}" href="{{this[3].href}}" class="width-100per" data-eventId="home_local_specialty">
+                    <img data-src="{{this[3].img}}" class="lazy lazy-fadein" style="max-height: 5.333333333333333rem">
+                </a>
+            </div>
+            <div class="col-33 border-r">
+                <a title="{{this[4].title}}" href="{{this[4].href}}" class="width-100per" data-eventId="home_local_specialty">
+                    <img data-src="{{this[4].img}}" class="lazy lazy-fadein" style="max-height: 5.333333333333333rem">
+                </a>
+            </div>
+            <div class="col-33">
+                <a title="{{this[5].title}}" href="{{this[5].href}}" class="width-100per" data-eventId="home_local_specialty">
+                    <img data-src="{{this[5].img}}" class="lazy lazy-fadein" style="max-height: 5.333333333333333rem">
+                </a>
+            </div></script><script type="text/template7" id="iTpl">{{#each this}}
+            <a title="{{#if bname}}{{bname}}{{else}}{{title}}{{/if}}" href="{{href}}" class="width-100per" data-eventId="home_the_biggest_name_this_week">
+                <img data-src="{{img}}" class="lazy lazy-fadein" style="max-height: 6.222222222222222rem;">
+                <div style="font-size:0.58rem; color:#666; padding:0.3rem 0.5rem 0.6rem;">
+                    {{#if bname}}[{{bname}}]&nbsp;{{/if}}{{title}}<span class="Etime"></span>
+                </div>
+            </a>
+            {{/each}}</script><script type="text/template7" id="jTpl"><li class="col-33">
+                <a title="{{this[0].title}}" href="{{this[0].href}}" class="width-100per" data-eventId="home_selection_channel_famous_hui"><img data-src="{{this[0].img}}" class="lazy lazy-fadein"></a>
+            </li>
+            <li class="col-33">
+                <a title="{{this[1].title}}" href="{{this[1].href}}" class="width-100per" data-eventId="home_selection_channel_beauty_life"><img data-src="{{this[1].img}}" class="lazy lazy-fadein"></a>
+            </li>
+            <li class="col-33">
+                <a title="{{this[2].title}}" href="{{this[2].href}}" class="width-100per" data-eventId="home_selection_channel_men_clothing"><img data-src="{{this[2].img}}" class="lazy lazy-fadein"></a>
+            </li>
+            <li class="col-33">
+                <a title="{{this[3].title}}" href="{{this[3].href}}" class="width-100per" data-eventId="home_selection_channel_women_clothing"><img data-src="{{this[3].img}}" class="lazy lazy-fadein"></a>
+            </li>
+            <li class="col-33">
+                <a title="{{this[4].title}}" href="{{this[4].href}}" class="width-100per" data-eventId="home_selection_channel_bags_and_shoes"><img data-src="{{this[4].img}}" class="lazy lazy-fadein"></a>
+            </li>
+            <li class="col-33">
+                <a title="{{this[5].title}}" href="{{this[5].href}}" class="width-100per" data-eventId="home_selection_channel_sports_outdoor"><img data-src="{{this[5].img}}" class="lazy lazy-fadein"></a>
+            </li></script><script type="text/template7" id="kTpl">{{#each this}}
+                <li class="item-content item-after-right-bottom">
+                    <div class="item-media">
+                        <a href="views/product-detail.html?skuId={{skuId}}" data-eventId="home_recommended_you"><img data-src="{{img}}" class="lazy lazy-fadein"></a>
+                    </div>
+                    <div class="item-inner" style="position:relative; padding-left:16px; padding-right:16px;">
+                        <a href="views/product-detail.html?skuId={{skuId}}" style="color:#333;" data-eventId="home_recommended_you">
+                            <div class="item-text">{{title}}
+                            </div>
+                            <div class="item-subtitle padding-vertical-5px"><span class="price-symbol margin-right-10px" style="font-size:0.53rem;color:#333;">{{sprice}}</span><span class="price-symbol" style="color:#999;font-size:0.45rem;"><span class="line-through">{{mprice}}</span></span>
+                            </div>
+                        </a>
+                        <a href="#" class="addFavour" data-skuid="{{skuId}}" style="position:absolute; bottom:0.5rem;right:0.3rem;" data-eventId="home_recommended_you"><i class="icon-heart-outline"></i></a>
+                    </div>
+                </li>
+            {{/each}}</script><script type="text/template7" id="lTpl"><div class="row width-100per">
+            {{#each this}}
+                <div class="col-{{this.percent}}">
+                    <a title="{{this.title}}" href="{{this.href}}"  data-eventId="home_instant_activity_item{{@index}}">
+                        <img src="{{this.img}}" style="min-height: 2rem;">
+                    </a>
+                </div>
+            {{/each}}
+            </div></script><script type="text/template7" id="tips"><div class="block-tips">
+                <i class="bg-icon-loading-bubbles"></i>
+            </div></script><div class="page-content pull-to-refresh-content" id="home-page-content"><style type="text/css">.border-r{border-right:1px solid #f5f5f5}.border-l{border-left:1px solid #f5f5f5}.border-t{border-top:1px solid #f5f5f5}.border-b{border-bottom:1px solid #f5f5f5}.page-content{transition:scrollTop 1000 ease-in-out;-webkit-transition:scrollTop 1000 ease-in-out}.content-title{font-size:.65rem;color:#333;border-left:5px solid #fff;background:#fff;height:1.7rem;line-height:1.75rem;text-indent:7px;margin:0}.home-icon-title{position:absolute;display:inline-block;bottom:.45rem;font-size:.44rem;font-weight:200;width:100%;text-align:center;color:#999}.shadow{-webkit-box-shadow:0 .1rem .15rem #f0f0f0;-ms-box-shadow:0 .1rem .15rem #f0f0f0;-o-box-shadow:0 .1rem .15rem #f0f0f0;-moz-box-shadow:0 .1rem .15rem #f0f0f0;box-shadow:0 .1rem .15rem #f0f0f0}.footer li{text-align:center;color:#999;line-height:20px;font-size:14px;margin:15px 0 10px 0}.broadcast{position:relative;overflow:hidden;height:1.778rem;background-color:#fff}.broadcast-icon{display:inline-block;position:absolute;top:30%;left:4.44%;width:16.67%;padding-right:2.78%;line-height:0}.swiper-container-c{overflow:hidden;position:absolute;top:0;left:26.67%}.swiper-container-c .swiper-slide{font-size:.533rem;line-height:1.778rem;display:inline-block}.sale-block{padding:0 32px}.count-down~span{font-size:.5rem;color:#999;font-weight:300;display:inline-block}.count-down{display:inline-block;line-height:1.2rem;font-size:.8rem;margin-left:-.2rem}.count-down span{display:inline-block;background-color:#ff5c77;border-radius:.2rem;width:.9rem;height:.9rem;color:#fff;margin:.1rem;font-weight:300;text-align:center;text-indent:0;font-size:.6rem;line-height:.9rem}.buy-now{display:inline-block;background-color:#f35;font-size:.65rem;border-radius:.2rem;width:3.1rem;height:1.1rem;line-height:1.1rem;color:#fff;font-weight:700;text-align:center;margin:.4rem .8rem;font-family:Yahei}.Etime{float:right;margin-right:.1rem;color:#999;letter-spacing:.015rem;font-size:.5rem}.Etime b{color:#f33;margin-right:.15rem}#home-fixed-button{display:none}.home-fixed-button{position:absolute;z-index:100;bottom:1.2rem;right:.71rem;transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out;transform:translate3d(80px,0,0);-webkit-transform:translate3d(80px,0,0)}.home-fixed-button div{color:#fff;width:1.78rem;height:1.78rem;background-color:#000;opacity:.5;margin-top:.44rem;font-size:.9rem;text-align:center;line-height:1.98rem;border-radius:6px}.endIcon{height:1.6rem;font-size:1.5rem;text-align:center;line-height:1.6rem;margin:5% 25%;width:50%}.line{display:inline-block;width:38%;height:1px;background:-webkit-linear-gradient(right,#e5e5e5 0,#fafafa 100%);background:linear-gradient(right,#e5e5e5 0,#fafafa 100%);margin-bottom:.15rem;margin-right:.15rem}.line:last-child{background:-webkit-linear-gradient(left,#e5e5e5 0,#fafafa 100%);background:linear-gradient(left,#e5e5e5 0,#fafafa 100%);margin-right:0;margin-left:.15rem}.addFavour i{font-size:.7rem;color:#da3784;margin-right:.4rem}.wait-bc span{background-color:#aaa}</style><div class="pull-to-refresh-layer"><div class="preloader" style="color:#666">加载中...</div><div class="pull-to-refresh-arrow"><i class="icon-desc" style="color:#666;font-weight:900"></i></div></div><div class="swiper-container-a swiper-container" style="width:100%;min-height:5.8rem;max-height:7rem"><div class="swiper-wrapper"></div><div class="swiper-pagination"></div></div><div id="b"></div><div class="broadcast shadow"><span class="broadcast-icon border-r"><img src="img/title_hot.png" alt=""></span><div class="swiper-container-c" style="width:16rem;min-height:1rem;max-height:1.778rem"><div class="swiper-wrapper"></div></div></div><div id="d" class="content-block content-block-padding-0" style="margin:0;position:relative;z-index:100"></div><div id="l" class="content-block content-block-padding-0" style="margin:0"></div><div class="content-block content-block-padding-0 shadow"><div class="content-block-inner row width-100per" style="min-height:2.066666666666667rem"><div class="col-33 border-r" id="e" style="position:relative"></div><div class="col-33 border-r" id="f1"></div><div class="col-33" id="f2"></div></div></div><div id="g"></div><div class="content-block content-block-padding-0 shadow"><div class="content-block-inner"><h2 class="content-title">热推专场</h2><div id="h1" class="row border-t border-b width-100per" style="height:7.5556rem;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden"></div><div id="h2" class="row width-100per" style="min-height:5.333333333333333rem;background-color:#fff"></div></div></div><div class="content-block content-block-padding-0 shadow"><div class="content-block-inner"><h2 class="content-title">本周最大牌</h2><div id="i" class="width-100per" style="min-height:30.93333333333333rem"></div></div></div><div class="content-block content-block-padding-0 shadow" style="border:0"><div class="content-block-inner" style="border:0"><h2 class="content-title">精选频道</h2><ul id="j" class="row border-t width-100per" style="min-height:10.58133333333333rem"></ul><h2 class="content-title border-t" style="height:40px"></h2></div></div><div class="content-block content-block-padding-0 shadow" id="bottom-tag" style="margin-bottom:0"><div class="content-block-inner"><ul class="row footer"><li class="col-25"><div class="icon-seven-days endIcon"></div>7天退换货</li><li class="col-25"><div class="icon-real-goods endIcon"></div>100%正品</li><li class="col-25"><div class="icon-quality endIcon"></div>质量保证</li><li class="col-25"><div class="icon-after-sale endIcon"></div>无忧售后</li></ul></div></div><div id="recommend" class="recommend width-100per" style="margin-top:10px;color:#999;text-align:center;line-height:.4rem;font-size:12px"><span class="line"></span>为您推荐<span class="line"></span></div><div id="loading" class="recommend width-100per" style="display:none;color:#999;text-align:center;line-height:.4rem;font-size:12px"><img src="img/loading.gif" alt=""></div><div class="content-block content-block-padding-0" id="k-bk"><div class="content-block-inner"><div id="k" class="list-block media-list large-view virtual-list"></div></div></div></div><div class="home-fixed-button" id="home-fixed-button"><div id="phone" data-phone-number="4001848866" style="visibility:hidden"><i class="icon-cus-service" style="font-size:1.08rem;line-height:2.03rem"></i></div><div id="scroll-to-top"><i class="icon-to-top"></i></div></div></div></div><script>var bridge=new Bridge,a=document.getElementById("home-fixed-button");a.onclick=function(){bridge.loadPage("home")};</script>

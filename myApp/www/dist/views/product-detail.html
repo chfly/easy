@@ -1,0 +1,149 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="product-detail" class="page no-navbar no-toolbar toolbar-fixed plugins-multiple-screen" data-title="商品详情"><div class="page-content"><div class="multiple-screen"></div><div class="multiple-screen-secondary"><div class="multiple-screen-title"><div class="buttons-row"><a href="#tab1" class="tab-link button active">商品介绍</a> <a href="#tab2" class="tab-link button">规格说明</a></div></div><div class="multiple-screen-inner"></div></div></div><div class="toolbar tabbar tabbar-labels"><div class="toolbar-inner row text-align-center"><div class="col-20"><a href="views/shoppingCart.html" id="cart" class="btn btn-link btn-full"><i class="icon-cart icon-large"><span id="cartCount" class="badge badge-red">0</span></i></a></div><div class="col-80"><a href="#" class="addCart addCartBar btn btn-red btn-large btn-full">加入购物车</a></div></div></div><script type="text/template7" id="slide"><div class="swiper-container height-16rem">
+                <div class="swiper-wrapper">
+                    {{#each slides}}
+                    <div class="swiper-slide">
+                        <img data-src={{this}} class="swiper-lazy" data-imgindex={{@index}}>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="swiper-pagination"><span class="swiper-pagination-bullet swiper-pagination-active"></span><span class="swiper-pagination-bullet"></span>
+                </div>
+            </div>
+            <div class="list-block content-block tablet-inset content-block-top-none">
+                <div class="content-block-inner">
+                    <div class="product-detail-fav border-bottom">
+                        <div>
+                            <div id="wxShareTitle">{{name}}</div>
+                            <div class="margin-vertical-10px margin-bottom-5px">
+                                <span class="price-symbol color-red font-size-18px">{{alj}}</span>
+                                <span class="price-symbol color-gray"><small class="line-through">{{scj}}</small></span>
+                                <span class="badge-red"><small>{{dis_rate}}折</small></span>
+                            </div>
+                        </div>
+                        <div class="height-44px width-3rem border-left vertical-align-middle">
+                            <div>
+                                <a class="addFavourite btn btn-link"><i class="icon-daishoucang icon-large"></i></a>
+                                <small>收藏</small>
+                            </div>
+                        </div>
+                    </div>
+                    {{#each cx_rate}}
+                    <div class="cx-rate">
+                        <div>
+                            <div class="badge-blue"><small>{{name}}</small></div>
+                        </div>
+                        <div>{{#each content}}
+                            <div>{{this}}</div>{{/each}}</div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="list-block tablet-inset">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title">品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：{{brand}}</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-block tablet-inset">
+                {{#if status}}
+                <a href="#" class="status item-link item-content open-popup" data-popup=".product-detail-popou">
+                    <div class="item-inner">
+                        <div class="item-title">
+                            {{#if attrs.length}}
+                                <span class="pleaseChiose">请选择&nbsp;</span>
+                            {{else}}
+                                <span class="buyCountTip">{{#js_compare "this.stocks >= this.startCount"}}{{startCount}}件起售{{else}}{{#js_compare "this.stocks === 0"}}已售罄{{else}}库存低于起售数量，无法购买{{/js_compare}}{{/js_compare}}</span>
+                            {{/if}}
+                            {{#each attrs}}
+                                <span class="attr-tip-{{@index}}">{{name}} </span>
+                            {{/each}}
+                        </div>
+                    </div>
+                </a>
+                {{else}}
+                <div class="status item-content">
+                    <div class="item-inner color-red">
+                        已下架
+                    </div>
+                </div>
+                {{/if}}
+            </div></script><script type="text/template7" id="popupHead"><div class="list-block media-list">
+                <div class="item-content item-after-right-top">
+                    <div class="item-media border-bottom"><img id="logo" src={{logo}} width="60">
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                            <div class="item-title"><span id="price" class="price-symbol color-red font-size-18px">{{alj}}</span></div>
+                            <div class="item-after"><a href="#" class="close-popup btn btn-link"><i class="icon-x icon-large"></i></a>
+                            </div>
+                        </div>
+                        <div class="item-subtitle">
+                            库存<span id="stocks">{{skus.stocks}}</span>件
+                        </div>
+                        <div class="item-subtitle color-gray">
+                            {{#if attrs.length}}<span class="pleaseChiose">请选择 </span>{{/if}} {{#each attrs}}
+                            <span class="attr-tip-{{@index}}">{{name}} </span> {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div></script><script type="text/template7" id="popupCenter"><div class="content-block">
+                {{#each attrs}}
+                <div class="row row-2 display-flex">
+                    <div class="padding-vertical-10px text-align-center vertical-align-middle height-44px col-15">{{name}}</div>
+                    <div class="padding-vertical-10px border-bottom col-85 attr-{{@index}} attr" data-attr-index="{{@index}}" data-tip="attr-tip-{{@index}}">
+                        {{#each value}}
+                        <span class="skuBtn btn btn-gray btn-margin {{#if this}}{{else}}disabled{{/if}}">{{@key}}</span> {{/each}}
+                    </div>
+                </div>
+                {{/each}}
+                <div class="row row-2 display-flex">
+                    <div class="padding-vertical-10px text-align-center vertical-align-middle height-44px col-15">数量</div>
+                    <div class="padding-vertical-10px border-bottom col-85">
+                        <div class="padding-top-5px">
+                            <span class="count-control">
+                                <a href="#" id="substructionBtn" class="btn btn-gray btn-medium"><i class="icon-substruction"></i></a>
+                                <input type="text" value='{{#js_compare "this.stocks >= this.startCount"}}{{startCount}}{{else}}0{{/js_compare}}' id="buyCount" class="pointer-events-none">
+                                <a href="#" id="addBtn" class="btn btn-gray btn-medium"><i class="icon-add"></i></a>
+                            </span>
+                            <span class="color-gray">{{startCount}}件起售</span>
+                        </div>
+                    </div>
+                </div>
+            </div></script><script type="text/template7" id="popupFooter"><a class='addCart btn btn-red btn-large btn-full{{#js_compare "this.stocks < this.startCount || this.stocks === 0"}} disabled{{/js_compare}}'>{{#js_compare "this.stocks < this.startCount && this.stocks > 0 "}}库存不足{{else}}{{#js_compare "this.stocks === 0"}}已售罄{{else}}加入购物车{{/js_compare}}{{/js_compare}}</a>
+            <!--
+            <div class="row">
+                <div class="col-50">
+                    <a class="addCart btn btn-red btn-large btn-full">加入购物车</a>
+                </div>
+                <div class="col-50">
+                    <a id="goPay" class="btn btn-yellow btn-large btn-full">立即购买</a>
+                </div>
+            </div>
+            --></script><script type="text/template7" id="multipleScreenInner"><div class="tabs">
+                <div id="tab1" class="tab active">
+                    {{#if desc.length}} {{#each desc}} {{#js_compare "this.type === 'img'"}}
+                    <img data-src="{{value}}" class="lazy lazy-fadeIn"> {{/js_compare}} {{#js_compare "this.type === 'text'"}} {{value}}
+                    <br> {{/js_compare}} {{/each}} {{else}}
+                    <p class="full-tips">暂无详情图片</p>
+                    {{/if}}
+                </div>
+                <div id="tab2" class="tab">
+                    {{#if desc.length}}
+                    <table class='product-detail-table'>
+                        {{#each spec}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{value}}</td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                    {{else}}
+                    <p class="full-tips">暂无规格信息</p>
+                    {{/if}}
+                </div>
+            </div></script></div></div>

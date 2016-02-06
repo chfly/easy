@@ -1,0 +1,37 @@
+<div class="navbar"><div class="navbar-inner"><form action="views/search-list.html" class="center searchbar searchbar-init width-14rem" data-custom-search="true"><div class="searchbar-input"><input type="search" placeholder="搜索奥莱购商品"> <a href="#" class="searchbar-clear"></a></div><a href="#" class="searchbar-cancel">取消</a></form></div></div><div class="pages"><div data-page="category" class="page no-toolbar plugins-swipe-move" data-title="分类"><div class="page-content"><div class="row height-100per"><div class="col-25 swipemove-vertical"><ul class="swipemove-inner tab-links"></ul></div><div class="col-75 height-100per tabs category position-relative"></div></div></div><script type="text/template7" id="left"><li><a href="#brands" class="tab-link active">品牌</a></li>
+            {{#each categoryName}}
+            <li><a href="#tab{{@index}}" class="tab-link">{{this}}</a></li>
+            {{/each}}</script><script type="text/template7" id="right"><ul class="list-index"></ul>
+            <div class="list-block contacts-block tab active height-100per indexed-list-wrapper" id="brands">
+                {{#each brands}}
+                <div class="list-group">
+                    <ul>
+                        <li class="list-group-title">{{@key}}</li>
+                        {{#each this}}
+                        <li>
+                            <a class="item-content" title="{{name}}" href="views/search-list.html?title={{name}}&{{hash}}">
+                                <div class="item-inner">
+                                    <div class="item-title">{{name}}</div>
+                                </div>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/each}}
+            </div>    
+            {{#each category}}
+                <dl class="tab height-100per" id="tab{{@index}}">
+                    {{#each sub}}
+                    <dt><a title="{{name}}" href="views/search-list.html?{{hash}}">{{name}}</a></dt>
+                    <dd class="row row-3">
+                        {{#each sub}}
+                        <a title="{{name}}" class="col-33" href="views/search-list.html?{{hash}}">
+                            <div><img src={{img}}></div>
+                            <span><small>{{name}}</small></span>
+                        </a>
+                        {{/each}}
+                    </dd>
+                    {{/each}}
+                </dl>
+            {{/each}}</script></div></div>

@@ -1,0 +1,46 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="search" class="page no-navbar no-toolbar" data-title="搜索奥莱购商品"><script type="text/template7" id="historyTpl">{{#if this.length}}
+            <div class="content-block-title">搜索历史</div>
+            <ul>
+                {{#each this}}
+                <li class="item-content">
+                    <a href="views/search-list.html?keyword={{this}}" class="item-inner">
+                        <div class="item-title">{{this}}</div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            <div class="content-block text-align-center">
+                <a id="clearHistory" class="btn btn-outline btn-medium btn-red">清空搜索历史</a>
+            </div>
+            {{/if}}</script><script type="text/template7" id="suggestTpl"><ul>
+                {{#each this}}
+                <li class="item-content">
+                    {{#js_compare "this.iscat === 1"}}
+                    <a href="views/search-list.html?bid={{bid}}&title={{cname}}" class="item-inner">
+                        <div class="item-title">
+                            <span class="color-gray">在&nbsp;</span>{{cname}}<span class="color-gray">&nbsp;类目下搜索</span>
+                        </div>
+                        <div class="item-after">约{{count}}条</div>
+                    </a>
+                    {{/js_compare}}
+
+                    {{#js_compare "this.isbrd === 1"}}
+                    <a href="views/search-list.html?pcid={{cid}}&title={{bname}}" class="item-inner">
+                        <div class="item-title">
+                            <span class="color-gray">在&nbsp;</span>{{bname}}<span class="color-gray">&nbsp;品牌下搜索</span>
+                        </div>
+                        <div class="item-after">约{{count}}条</div>
+                    </a>
+                    {{/js_compare}}
+
+                    {{#js_compare "this.iscat === 0 && this.isbrd === 0"}}
+                    <a href="views/search-list.html?keyword={{keyword}}" class="item-inner">
+                        <div class="item-title">
+                            {{keyword}}
+                        </div>
+                        <div class="item-after">约{{count}}条</div>
+                    </a>
+                    {{/js_compare}}
+                </li>
+                {{/each}}
+            </ul></script><form action="views/search-list.html" class="searchbar width-14rem"><div class="searchbar-input"><input type="search" placeholder="搜索奥莱购商品"> <a href="#" class="searchbar-clear"></a></div><a href="#" class="searchbar-cancel back">取消</a></form><div class="page-content"><div class="list-block list-block-search searchbar-found"></div></div></div></div>

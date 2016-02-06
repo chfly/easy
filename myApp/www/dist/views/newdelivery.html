@@ -1,0 +1,63 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div class="page no-navbar no-toolbar toolbar-fixed plugins-multiple-screen" data-page="newdelivery" data-title="新增收货地址"><div class="page-content"><div id="newdelivery"></div></div><script type="text/template7" id="newd"><div class="nh-newharv">
+                <div class="nh-topmain">
+                    <div class="nh-topfushu">
+                        <!--  收货人姓名 -->
+                        <div class="nh-topborder">
+                            <div class="nh-name">收货人姓名</div>
+                            <input class="nh-phone n_name" type="text" value="" data-name="" maxlength="15">
+                        </div>
+                        <!--  联系电话 -->
+                        <div class="nh-topborder">
+                            <div class="nh-name">联系电话</div>
+                            <input class="nh-phone db-phone" type="tel" value="" data-phone="">
+                        </div>
+                    </div>
+                </div>
+                <div class="nh-topmain">
+                    <div class="nh-topfushu">
+                        <!--  选择省份 -->
+                        <div class="nh-topborder">
+                            <div class="nh-name">选择省份</div>
+                            <select class="nh-phone nh-province nh-province-pop" id="nh_shen" type="text" value="" data-a="" data-ip="" onkeypress="javascript:return false">
+                                <option value="-999">请选择</option>
+                                {{#each newdelivery}}
+                                <option value="{{address_code}}@{{is_p}}@{{address_name}}">{{address_name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <!--  选择城市 -->
+                        <div class="nh-topborder">
+                            <div class="nh-name">选择城市</div>
+                            <select class="nh-phone nh-city" type="text" value="" data-index="" data-city="" onkeypress="javascript:return false" id="nh-ada">
+                            </select>
+                        </div>
+                        <!--  选择县/区 -->
+                        <div class="nh-topborder">
+                            <div class="nh-name">选择县/区</div>
+                            <select class="nh-phone nh-counties" type="text" value="" data-district="" data-dCode="" onkeypress="javascript:return false" id="nh-cd">
+                            </select>
+                        </div>
+                        <!--  选择街道 -->
+                        <div class="nh-topborder hide_street">
+                            <div class="nh-name">选择街道</div>
+                            <select class="nh-phone nh-street" type="text" value="" data-street="" data-hide="" onkeypress="javascript:return false" id="nh-jiedao">
+                            </select>
+                        </div>
+                        <!--  详细地址 -->
+                        <div class="nh-topborder">
+                            <div class="nh-name">详细地址</div>
+                            <input class="nh-phone nh_detailAddress" type="text" value="" data-detailAddress="" maxlength="50">
+                        </div>
+                        <!--  邮政编码 -->
+                        <div class="nh-topborder">
+                            <div class="nh-name">邮政编码</div>
+                            <input class="nh-phone nh_postCode" value="" data-postCode="" type="number" maxlength="6">
+                        </div>
+                    </div>
+                </div>
+                <div class="nh-bottomnew-cun">
+                    <div class="nh-bottom-save gai-ys">保存</div>
+                    <div class="nh-bottom-efault">
+                        <input type="checkbox" checked="checked" id="" class="nh-sd" data-isDefault="1"><span>设为默认</span></div>
+                </div>
+            </div></script></div></div>

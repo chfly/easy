@@ -1,0 +1,27 @@
+<div class="navbar"><div class="navbar-inner od-top-nav ico-rss-bai"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div class="page no-navbar no-toolbar toolbar-fixed plugins-multiple-screen" data-title="收货地址" data-page="address"><div class="page-content"><div id="address"></div></div><div class="toolbar tabbar tabbar-labels"><div class="toolbar-inner"><div class="row"><div class="col-100"><a href="views/newdelivery.html" class="btn btn-red btn-large btn-full">新增地址</a></div></div></div></div><script type="text/template7" id="adda"><div class="rss-center">
+                {{#if address.length}}
+                    {{#each address}}
+                    <div class="rss-shur">
+                        <div class="rss-textbox" style="min-height: 80px;">
+                            <div class="rss-t-l">
+                                <p>{{name}},{{phone}}</p>
+                                <p>{{province}}{{city}}{{district}}{{street}}{{detailAddress}}</p>
+                                <p>{{postCode}}</p>
+                            </div>
+                            <div class="rss-t-r">
+                                <i class="rss-yes" data-id="{{address_id}}" data-tps="{{isDefault}}"></i>
+                                <div class="rss-duanluo color-gray">[默认]</div>
+                            </div>
+                        </div>
+                        <div class="rss-editor">
+                            <div class="rss-edde rss-bianji"><i class="rss-ed-ico"></i><span>编辑</span></div>
+                            <div class="rss-edde rss-shanchu" data-id="{{address_id}}"><i class="icon-delete" style="color:#555; font-size:0.8rem;"></i><span>删除</span></div>
+                        </div>
+                    </div>
+                    {{/each}}
+                {{else}}
+                <div class="full-tips">
+                    <i class="icon-search icon-large"></i> 无收货地址！
+                </div>
+                {{/if}}
+            </div></script></div></div>

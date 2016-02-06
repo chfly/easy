@@ -1,0 +1,159 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="submitOrder" class="page no-navbar no-toolbar toolbar-fixed" data-title="填写订单"><div class="page-content"><div class="list-block content-block img-border-top postcard-border background-color-softYella"><a href="views/address.html?pageBack=true" class="item-link item-content background-color-softYella"><div class="item-inner"><div class="row" id="defaultAddress"></div></div></a></div></div><div class="toolbar tabbar tabbar-labels background-color-black"><div class="toolbar-inner row"><div class="col-50 text-align-center" id="finalPay"></div><div class="col-50"><a href="#" id="submitOrder" class="btn btn-red btn-large btn-full">提交订单</a></div></div></div><script type="text/template7" id="finalPay">实付款：<span class="price-symbol">{{finalPay}}</span></script><script type="text/template7" id="defaultAddress">{{#if consigneeName}}
+            <div class="col-50 padding-10px font-weight-bold"><i class="icon-touxiang color-red"></i><span id="consigneeName">{{consigneeName}}</span></div>
+            <div class="col-50 padding-10px font-weight-bold"><i class="icon-phone color-red"></i><span id="consigneePhone">{{consigneePhone}}</span></div>
+            <div class="col-100 padding-10px font-size-12px padding-top-0"><span id="consigneeAddress">{{consigneeAddress}}</span></div>
+            {{else}}
+            <p>去添加收货地址</p>
+            {{/if}}</script><script type="text/template7" id="orderDetail"><div class="list-block">
+                <div class="accordion-item">
+                    <div class="item-content item-link">
+                        <div class="item-inner accordion-item-toggle">
+                            <div class="item-title"><span class="text-item-title">商品清单</span></div>
+                            <div class="item-after color-red">共{{goodsAmount}}件{{#if giftAmount}}({{giftAmount}}件赠品){{/if}}</div>
+                        </div>
+                    </div>
+                    <div class="list-view media-list accordion-item-content">
+                        {{#each goods}}
+                        <a href="views/product-detail.html?skuId={{skuId}}" class="item-link item-small item-content">
+                            <div class="item-media"><img src="{{img}}"></div>
+                            <div class="item-inner">
+                                <div class="item-text">{{#js_compare "this.type === 2"}}<span class="color-red">(换购商品)</span>{{/js_compare}}{{#js_compare "this.type === 3"}}<span class="color-red">(赠品)</span>{{/js_compare}}{{title}}</div>
+                                <div class="color-gray">{{attr}}</div>
+                                <div><span class="price-symbol">{{price}}</span>x{{amount}}</div>
+                            </div>
+                        </a>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <form>
+                <input name="point" value="0" type="hidden">
+                <input name="order_source" value="" type="hidden">
+                <div class="list-block">
+                    <a href="#" class="item-link smart-select" data-back-on-select="true" data-open-in="popup">
+                        <select id="couponCode" name="couponCode" {{#if coupons.length}}{{else}} disabled{{/if}}>
+                            {{#each coupons}}
+                            <option value="{{value}}" {{#if @index}}{{else}}selected="" {{/if}}>{{name}}</option>
+                            {{/each}}
+                        </select>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">优惠使用</div>
+                                <div class="item-after">{{#if coupons.length}}选择优惠券{{else}}无可用券{{/if}}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="list-block">
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">支付方式</div>
+                            <div class="item-after">
+                                在线支付
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <!--<div class="list-block">
+                    <div class="accordion-item accordion-item-payType">
+                        <div class="item-content item-link">
+                            <div class="item-inner accordion-item-toggle">
+                                <div class="item-title">支付方式</div>
+                                <div class="item-after color-red" id="payType">请选择</div>
+                            </div>
+                        </div>
+                        <div class="list-view media-list accordion-item-content">
+                            <div class="item-content" style="height:auto;">
+                                <div class="item-inner list-block">
+                                  <ul>
+                                    <li>
+                                      <label class="label-radio item-content" style="height:auto;">
+                                        <input type="radio" name="payType" value="aliPay" checked="checked">
+                                        <div class="item-inner">
+                                          <div class="item-title">支付宝</div>
+                                        </div>
+                                      </label>
+                                    </li>
+                                    <li>
+                                      <label class="label-radio item-content" style="height:auto;">
+                                        <input type="radio" name="payType" value="wxPay">
+                                        <div class="item-inner">
+                                          <div class="item-title">微信</div>
+                                        </div>
+                                      </label>
+                                    </li>
+                                    <li>
+                                      <label class="label-radio item-content" style="height:auto;">
+                                        <input type="radio" name="payType" value="abcPay">
+                                        <div class="item-inner">
+                                          <div class="item-title">农行支付</div>
+                                        </div>
+                                      </label>
+                                    </li>
+                                  </ul>  
+                                </div>
+                            </div>
+                        </div>     
+                    </div>
+                </div>-->
+                <div id="invoice" class="list-block accordion-item">
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">发票信息</div>
+                            <div class="item-after">
+                                <label class="label-switch accordion-item-toggle">
+                                    <input type="checkbox">
+                                    <div class="checkbox">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item-content">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">发票标题：</div>
+                                <div class="item-input">
+                                    <input name="invoiceHead" maxlength="50" type="text" placeholder="请输入个人或公司名称" style="width: 9rem;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">发票内容：</div>
+                                <div class="item-input">
+                                    商品明细
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-block">
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">留言：</div>
+                            <div class="item-input">
+                                <textarea name="msg" maxlength="200"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="list-block media-list">
+                <div class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title display-flex-justify-content-space-between">
+                            <div>商品总额</div>
+                            <div class="color-red"><span class="price-symbol">{{totalPay}}</span></div>
+                        </div>
+                        <div class="item-subtitle display-flex-justify-content-space-between">
+                            <div>+ 运费</div>
+                            <div class="color-red"><span class="price-symbol">{{freight}}</span></div>
+                        </div>
+                        <div class="item-subtitle display-flex-justify-content-space-between">
+                            <div>- 优惠</div>
+                            <div class="color-red"><span class="price-symbol" id="preferential">{{preferential}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div></script></div></div>

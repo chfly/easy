@@ -1,0 +1,38 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="order-list" class="page no-navbar no-toolbar plugins-show-on-scroll-up plugins-swipe-move" data-title="我的订单"><div class="page-content infinite-scroll" data-distance="44"><style type="text/css">.h-list>li:not(:first-child)>*{border-left:none}</style><div class="show-on-scroll-up show-on-scroll-end"><div class="show-on-scroll-up-inner swipemove-horizontal"><div><div class="swipemove-inner"><ul class="h-list active-links"><li><a href="orderList" class="active-link">全部</a></li><li><a href="orderListWaitPay" class="active-link">待付款</a></li><li><a href="orderListWaitDelivery" class="active-link">待发货</a></li><li><a href="orderListWaitRecipt" class="active-link">待收货</a></li><li><a href="orderListFinish" class="active-link">已完成</a></li><li><a href="orderListClose" class="active-link">已取消</a></li></ul></div></div></div></div><div class="list-block media-list list-view virtual-list"></div></div><script type="text/template7" id="order">{{#if orders.length}}
+            <ul>
+                {{#each orders}}
+                <li class="content-block">
+                    <div class="content-block-inner">
+                        <div class="content-block-title display-flex-justify-content-space-between">
+                            <div><span class="color-gray">下单时间：</span>{{time}}</div>
+                            <div>
+                                {{#if _style}}
+                                <span class="color-red">{{status}}</span> {{else}}
+                                <a href="views/order-detail.html?orderId={{id}}" class="btn btn-outline btn-red btn-small">{{status}}</a> {{/if}}
+                            </div>
+                        </div>
+                        {{#each goods}}
+                        <div class="item-link item-small item-content">
+                            <div class="item-media">
+                                <a href="views/order-detail.html?orderId={{../id}}"><img src="{{img}}"></a>
+                            </div>
+                            <a class="item-inner" href="views/order-detail.html?orderId={{../id}}">
+                                <div class="item-text">{{name}}</div>
+                                <div class="color-gray">{{attr}}</div>
+                                <div><span class="price-symbol">{{price}}</span>x{{amount}}</div>
+                            </a>
+                        </div>
+                        {{/each}}
+                        <div class="block-title display-flex-justify-content-space-between">
+                            <div></div>
+                            <div>共{{_amount}}件商品,实付:<span class="price-symbol color-red margin-right-10px">{{price}}</span></div>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <div class="full-tips">
+                <i class="icon-empty-result"></i> 无相关订单！
+            </div>
+            {{/if}}</script></div></div>

@@ -1,0 +1,63 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="actnest" class="page no-navbar no-toolbar plugins-show-on-scroll-up plugins-swipe-move" data-title=""><script type="text/template7" id="bannerTpls">{{#js_compare "this.href || this.ac"}}
+                {{#if href}}<!--普通跳转链接-->
+                    <a href="{{href}}" title="{{title}}" data-eventId="home_grab_qianghui_banner" style="display:block;"><img src="{{img}}"></a>
+                {{else}}
+                    {{#if lt}}<!--常规活动-->
+                    <a href="#" data-ac="{{ac}}" data-lt="{{lt}}" class="activity" data-eventId="home_grab_qianghui_banner" style="display:block;"><img src="{{img}}"></a>
+                    {{else}}<!--分享-->
+                    <a href="#" data-ac="{{ac}}" class="share" data-eventId="home_grab_qianghui_banner" style="display:block;"><img src="{{img}}"></a>
+                    {{/if}}
+                {{/if}}
+            {{else}}
+                <img src="{{img}}"> 
+            {{/js_compare}}</script><script type="text/template7" id="productsTpls">{{#each items}}
+            <div class="content-title" id="channels-title-{{@index}}" style="height:4.44rem;position:relative;"><i></i><span class="floor-title" {{#if stitle}}style="margin-top: -0.711rem; line-height: 0.8rem;"{{else}}style="margin-top: -0.356rem; line-height: 0.711rem;"{{/if}}>{{title}}{{#if stitle}}<br><span>{{stitle}}</span>{{/if}}</span><i></i></div>
+            <div class="content-block content-block-margin-0 content-block-padding-0">
+                <div class="content-block-inner">
+                    <ul class="list-block media-list large-view">
+                    {{#js_compare "this.percent==100"}}
+                        {{#each items}}
+                        <li class="prod width-100per" style="position:relative;"data-skuid="{{skuId}}">
+                            <div class="item-img">
+                                <a href="views/product-detail.html?skuId={{skuId}}" data-eventId="home_grab_qianghui_prod"><img data-src="{{img}}" class="lazy lazy-fadein"></a>
+                            </div>
+                            <div class="item-exp" style="position:relative; padding-left:5px; padding-right:5px;">
+                                <a href="views/product-detail.html?skuId={{skuId}}" style="color:#333;" data-eventId="home_grab_qianghui_prod">
+                                    <div class="item-intro" style="white-space: normal;">{{bname}} {{title}}
+                                    </div>
+                                    <div class="item-subtext" style="color:{{#js_compare "this.stock >= this.startNum"}}#ff3434{{else}}#999{{/js_compare}};"><span class="price-symbol margin-right-10px" style="font-weight:600;font-size:0.62rem;">{{sprice}}</span><span class="line-through" style="color:#999;font-size:0.42rem;font-weight:normal;"><span class="price-symbol">{{mprice}}</span></span>
+                                    </div>
+                                </a>
+                               <a href="views/product-detail.html?skuId={{skuId}}" data-eventId="home_grab_qianghui_prod" class="item-btn{{#js_compare "this.stock >= this.startNum"}} sale-item-btn{{else}} saleout-item-btn{{/js_compare}}" data-skuid="{{skuId}}" style="position:absolute; bottom:0.9rem;right:0.3rem;">马上选购</a>
+                            </div>
+                            {{#js_compare "this.stock < this.startNum"}}
+                            <div class="saleout-stamp"><i class="icon-sale-out"></i>   
+                            </div>{{/js_compare}} 
+                        </li>
+                        {{/each}}
+                    {{else}}
+                        {{#each items}}
+                        <li class="item-content item-after-right-bottom">
+                            <div class="item-media">
+                                <a href="views/product-detail.html?skuId={{skuId}}" data-eventId="home_grab_qianghui_prod"><img data-src="{{img}}" class="lazy lazy-fadein"></a>
+                            </div>
+                            <div class="item-inner" style="position:relative; padding-left:16px; padding-right:16px;">
+                                <a href="views/product-detail.html?skuId={{skuId}}" style="color:#333;" data-eventId="home_grab_qianghui_prod">
+                                    <div class="item-text" style="font-size: 0.541rem; line-height: 0.8116rem; height: 1.623rem;">{{bname}} {{title}}
+                                    </div>
+                                    <div class="item-subtitle padding-vertical-5px"><span class="price-symbol margin-right-10px" style="font-size:0.53rem;color:#da3784;">{{sprice}}</span><span class="price-symbol" style="color:#999;font-size:0.40rem;"><span class="line-through">{{mprice}}</span></span>
+                                    </div>
+                                </a>
+                                <a href="#" class="addFavour" data-skuid="{{skuId}}" style="position:absolute; bottom:0.5rem;right:0.3rem;"><i class="icon-heart-outline"></i></a>
+                            </div>
+                        </li>
+                        {{/each}}
+                    {{/js_compare}} 
+                    </ul>
+                </div>
+            </div>
+            {{/each}}</script><script type="text/template7" id="subTitlesTpls">{{#if this.subTitles}}
+            {{#each subTitles}}
+                <li><a style="border-left:none;" href="#channels-title-{{@index}}"{{#if @first}} class="active"{{/if}} data-scroll="" data-scroll-offset="5">{{this}}</a></li>
+            {{/each}}
+        {{/if}}</script><div class="page-content"><style>.prod{height:6.5rem;position:relative;overflow:hidden;border-top:1px solid #f0f0f0}ul li:first-child{border-top:none}.item-img{position:absolute;width:6.5rem;padding:10px;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.item-subtext{font-size:.55rem;color:#888;position:absolute;top:3.3rem}.item-exp{position:relative;left:6.5rem;height:100%;width:55%;-webkit-box-sizing:border-box;box-sizing:border-box}.item-intro{text-align:left;display:inline-block;line-height:.8rem;font-size:.533rem;color:#333;position:absolute;top:.8rem;overflow:hidden;height:2.7em}.item-btn{display:inline-block;width:2.8rem;height:1.05rem;font-size:.53rem;line-height:1.05rem;text-align:center;color:#ff3434;border-radius:.11rem;border:1px solid #ff3434}.saleout-item-btn{color:#999;border:1px solid #999}.addFavour i{font-size:.7rem;color:#da3784;margin-right:.4rem}.floor-title{font-size:.711rem;color:#333;font-weight:bolder;display:inline-block;text-align:center;width:100%;position:absolute;top:50%;margin-top:-.7rem;line-height:.8rem;letter-spacing:.05rem}.floor-title span{display:inline-block;font-size:.44rem;font-weight:400}.saleout-stamp{position:absolute;bottom:2.6rem;left:3.5rem}.saleout-stamp i{font-size:3rem;color:#f17d5e}.content-title i{display:inline-block;position:absolute;top:50%;width:4rem;height:1px;background-color:#999;vertical-align:text-top;line-height:1rem}.content-title i:first-child{left:4.167%}.content-title i:last-child{right:4.167%}</style><div class="show-on-scroll-up show-on-scroll-end" id="subTitles-nav"><div class="show-on-scroll-up-inner swipemove-horizontal"><div><ul class="h-list swipemove-inner" id="subTitles"></ul></div></div></div><div id="banners" style="background-color:#fafafa"></div><div id="products" style="background-color:#fafafa"></div></div></div></div>

@@ -1,0 +1,54 @@
+<div class="navbar"><div class="navbar-inner"><div class="left"></div><div class="center"></div><div class="right"></div></div></div><div class="pages"><div data-page="seckill" class="page no-navbar no-toolbar plugins-swipe-move" data-title="" style="overflow-x:hidden"><script type="text/template7" id="bannerTpls">{{#js_compare "this.href || this.ac"}}
+                {{#if href}}<!--普通跳转链接-->
+                    <a href="{{href}}" title="{{title}}"><img src="{{img}}"></a>
+                {{else}}
+                    {{#if lt}}<!--常规活动-->
+                    <a href="#" data-ac="{{ac}}" data-lt="{{lt}}" class="activity"><img src="{{img}}"></a>
+                    {{else}}<!--分享-->
+                    <a href="#" data-ac="{{ac}}" class="share"><img src="{{img}}"></a>
+                    {{/if}}
+                {{/if}}
+            {{else}}
+                <img src="{{img}}">
+            {{/js_compare}}</script><script type="text/template7" id="prod1Tpl">{{#each this}}
+                <li class="prod width-100per">
+                    <div class="item-img">
+                        <a href="views/product-detail.html?skuId={{skuId}}"  data-eventId="home_soonerorlater_earlycommodity"><img data-src="{{img}}" class="lazy lazy-fadein"></a>
+                    </div>
+                    <div class="item-exp">
+                        <a href="views/product-detail.html?skuId={{skuId}}" class="item-detail"  data-eventId="home_soonerorlater_earlycommodity">
+                            <div class="item-intro" style="white-space: normal;">{{title}}
+                            </div>
+                            <div class="item-subtext"{{#js_compare "this.stock >= this.startNum"}}{{#if status}}style="color:#da3784;"{{/if}}{{/js_compare}}>秒杀价：<span class="price-symbol margin-right-10px">{{#if saleprice}}{{saleprice}}{{else}}{{sprice}}{{/if}}</span></br><span class="line-through" style="color:#999;font-size:0.5rem;font-weight:normal;">市场价：<span class="price-symbol">{{mprice}}</span></span>
+                            </div>
+                        </a>
+                        {{#js_compare "this.stock >= this.startNum"}}{{#if status}}{{#js_compare "this.status == '1'"}}<a href="views/product-detail.html?skuId={{skuId}}" class="grab" data-skuid="{{skuId}}"  data-eventId="home_soonerorlater_eveninggoods">马上抢购</a>{{else}}<a href="" class="grab wait_grab">即将开始</a>{{/js_compare}}{{else}}<a href="" class="grab wait_grab">已结束</a>{{/if}}{{else}}<a href="" class="grab wait_grab">已抢光</a>{{/js_compare}} 
+                    </div>
+                    {{#js_compare "this.stock < this.startNum"}}
+                    <div class="saleout-stamp"><i class="icon-sale-out"></i>   
+                    </div>{{/js_compare}} 
+                </li>
+            {{/each}}</script><script type="text/template7" id="prod2Tpl">{{#each this}}
+                <li class="prod width-100per">
+                    <div class="item-img">
+                        <a href="views/product-detail.html?skuId={{skuId}}"  data-eventId="home_soonerorlater_eveninggoods"><img data-src="{{img}}" class="lazy lazy-fadein"></a>
+                    </div>
+                    <div class="item-exp">
+                        <a href="views/product-detail.html?skuId={{skuId}}" class="item-detail"  data-eventId="home_soonerorlater_eveninggoods">
+                            <div class="item-intro" style="white-space: normal;">{{title}}
+                            </div>
+                            <div class="item-subtext" {{#js_compare "this.stock >= this.startNum"}}{{#if status}}style="color:#da3784;"{{/if}}{{/js_compare}}>秒杀价：<span class="price-symbol margin-right-10px">{{#if saleprice}}{{saleprice}}{{else}}{{sprice}}{{/if}}</span></br><span class="line-through" style="color:#999;font-size:0.5rem;font-weight:normal;">市场价：<span class="price-symbol">{{mprice}}</span></span>
+                            </div>
+                        </a>
+                        {{#js_compare "this.stock >= this.startNum"}}{{#if status}}{{#js_compare "this.status == '1'"}}<a href="views/product-detail.html?skuId={{skuId}}" class="grab" data-skuid="{{skuId}}"  data-eventId="home_soonerorlater_eveninggoods">马上抢购</a>{{else}}<a href="" class="grab wait_grab">即将开始</a>{{/js_compare}}{{else}}<a href="" class="grab wait_grab">已结束</a>{{/if}}{{else}}<a href="" class="grab wait_grab">已抢光</a>{{/js_compare}} 
+                    </div>
+                    {{#js_compare "this.stock < this.startNum"}}
+                    <div class="saleout-stamp"><i class="icon-sale-out"></i>   
+                    </div>{{/js_compare}} 
+                </li>
+            {{/each}}</script><script type="text/template7" id="timeTpl"><span class="sk-item-title">限量好货  限时疯抢</span>
+            <div  class="time-title">{{#js_compare "this.status == '1'"}}距离结束还有 <span class="salecountdown"><span>00</span><span>:</span><span>00</span><span>:</span><span>00</span></span>{{else}}{{#if status}}距离开始还有 <span class="salecountdown salecountdown-wait"><span>00</span><span>:</span><span>00</span><span>:</span><span>00</span></span>{{else}}秒杀已结束<span class="salecountdown"></span>{{/if}}{{/js_compare}}</div></script><script type="text/template7" id="MorgenTagTpl"><div {{#js_compare "this.status == '1'"}}class="saletime focus"{{else}}{{#if status}}class="saletime focus saletime-wait"{{else}}class="saletime focus saletime-out"{{/if}}{{/js_compare}}>08:00<span class="salestatus" >{{#js_compare "this.status == '1'"}}正在疯抢{{else}}{{#if status}}即将开始{{else}}已结束{{/if}}{{/js_compare}}</span></div></script><script type="text/template7" id="NachtTagTpl"><div {{#js_compare "this.status == '1'"}}class="saletime"{{else}}{{#if status}}class="saletime saletime-wait"{{else}}class="saletime saletime-out"{{/if}}{{/js_compare}}>20:00<span class="salestatus" >{{#js_compare "this.status == '1'"}}正在疯抢{{else}}{{#if status}}即将开始{{else}}已结束{{/if}}{{/js_compare}}</span></div></script><script type="text/template7" id="bannerTpl">{{#each this}}
+            <a title="{{#if bname}}{{bname}}{{else}}{{title}}{{/if}}" href="{{href}}" class="width-100per" data-eventId="home_soonerorlater_banner">
+                <img data-src="{{img}}" class="lazy lazy-fadein">
+            </a>
+            {{/each}}</script><div class="page-content" style="width:100%;overflow-x:hidden;position:static"><style type="text/css">.saletime{font-size:.66rem;line-height:2rem;text-indent:1.3rem;color:#333;background-color:#f5f5f5}.salestatus{display:inline-block;text-align:center;text-indent:0;width:60%}.prod{height:5.78rem;position:relative;overflow:hidden;border-top:1px solid #f0f0f0}.tran{transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out}.item-img{position:absolute;width:37.78%;padding:11px 11px 9px 17px;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.item-subtext{font-size:.667rem;font-weight:700;color:#888}.item-exp{position:relative;left:40%;height:100%;width:60%;-webkit-box-sizing:border-box;box-sizing:border-box}.item-detail{position:absolute;width:90%;bottom:20%}.sk-item-title{display:inline-block;line-height:1.3rem;font-size:.53rem;bottom:1.6rem;text-indent:.6rem;color:#666}.grab{position:absolute;bottom:.5rem;right:.6rem;width:3.11rem;height:1.24rem;background-color:#ff5c77;color:#fff;font-size:.62rem;line-height:1.24rem;text-align:center;border-radius:3px}.grab:active{background-color:#e5536b}.wait_grab{background-color:#aaa}.wait_grab:active{background-color:#aaa}.item-intro{text-align:left;display:inline-block;line-height:.8rem;font-size:.63rem;color:#333;position:absolute;top:-2rem;overflow:hidden;height:2.5em}.time-title{display:inline-block;font-size:.53rem;color:#666;line-height:1.3rem;text-align:right;display:inline-block;position:absolute;right:.6rem}.banner{margin:0}.prod-content{width:200%}.list{float:left;width:50%}.saletime-out{color:#333}.focus{color:#da3784;background-color:#fff;font-weight:700}.salecountdown span{display:inline-block;color:#ff5c77;margin:0 .05rem;font-weight:500;text-align:center;text-indent:0;font-size:.62rem;line-height:.62rem}.salecountdown-wait span{color:#999}.home-fixed-button{position:absolute;z-index:100;bottom:1.2rem;right:.71rem;transition:all .3s ease-in-out;-webkit-transition:all .3s ease-in-out;transform:translate3d(80px,0,0);-webkit-transform:translate3d(80px,0,0)}.home-fixed-button div{color:#fff;width:1.78rem;height:1.78rem;background-color:#000;opacity:.5;margin-top:.44rem;font-size:.9rem;text-align:center;line-height:1.98rem;border-radius:6px}.saleout-stamp{position:absolute;bottom:2.6rem;left:3.5rem}.saleout-stamp i{font-size:3rem;color:#f17d5e}</style><div class="content-block content-block-padding-0 banner"><div class="content-block-inner"><div id="banner" class="width-100per" style="min-height:2rem"></div></div></div><div class="content-block content-block-padding-0" style="margin:0;margin-top:11px"><div class="content-block-inner"><ul class="row" style="border-bottom:1px solid #dedede"><li class="col-50" id="MorgenTag" style="border-right:1px solid #f0f0f0"></li><li class="col-50" id="NachtTag"></li></ul></div></div><div class="content-block content-block-padding-0" style="margin:0"><div class="prod-content" id="prod-content"><div class="content-block content-block-padding-0 list" style="margin-top:0" id="mbk"><div id="MorgenTime" style="position:relative;height:1.3rem"></div><div class="content-block-inner"><div id="Morgen" class="list-block media-list large-view virtual-list"></div></div></div><div class="content-block content-block-padding-0 list" style="margin-top:0" id="nbk"><div id="NachtTime" style="position:relative;height:1.3rem"></div><div class="content-block-inner"><div id="Nacht" class="list-block media-list large-view virtual-list"></div></div></div></div></div></div><div class="home-fixed-button" id="sk-home-fixed-button"><div id="sk-scroll-to-top"><i class="icon-to-top"></i></div></div></div></div>
