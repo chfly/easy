@@ -1,84 +1,25 @@
-<html ng-app="ionicApp">
+<!DOCTYPE html>
+<html ng-app="starter">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-  <title>菜鸟教程(runoob.com)</title>
-  <link href="http://www.runoob.com/static/ionic/css/ionic.min.css" rel="stylesheet">
-  <script src="http://www.runoob.com/static/ionic/js/ionic.bundle.min.js"></script>
+  <title></title>
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="cordova.js"></script>
+  <script src="js/myapp.js"></script>
 </head>
-<body>
-
-<div class="bar bar-header">
-  <div class="h1 title">Select</div>
+<body ng-controller="actionsheetCtl" >
+<div class="bar bar-header bar-light tabs">
+  <a class="tab-item">
+    主页
+  </a>
+  <a class="tab-item">
+    收藏
+  </a>
+  <a class="tab-item">
+    设置
+  </a>
 </div>
 
-<div class="content-wrapper">
-  <div class="content has-header">
-
-    <div class="list">
-
-      <div class="item item-select">
-        <div class="input-label">
-          Lightsaber
-        </div>
-        <select>
-          <option>Blue</option>
-          <option selected="">Green</option>
-          <option>Red</option>
-        </select>
-      </div>
-
-      <div class="item item-input item-select">
-        <div class="input-label">
-          Fighter
-        </div>
-        <select>
-          <option>ARC-170</option>
-          <option>A-wing</option>
-          <option>Delta-7</option>
-          <option>Naboo N-1</option>
-          <option>TIE</option>
-          <option selected="">X-wing</option>
-          <option>Y-wing</option>
-        </select>
-      </div>
-
-      <div class="item item-input item-select">
-        <div class="input-label">
-          Droid
-        </div>
-        <select>
-          <option>2-1B</option>
-          <option>B1</option>
-          <option>C-3PO</option>
-          <option>IG-88</option>
-          <option>IT-O</option>
-          <option selected="">R2-D2</option>
-        </select>
-      </div>
-
-      <div class="item item-input item-select">
-        <div class="input-label">
-          Planet
-        </div>
-        <select>
-          <option>Alderaan</option>
-          <option selected="">Dagobah</option>
-          <option>Felucia</option>
-          <option>Geonosis </option>
-          <option>Hoth</option>
-          <option>Kamino</option>
-          <option>Mygeeto</option>
-          <option>Naboo</option>
-          <option>Tataouine</option>
-          <option>Utapau</option>
-          <option>Yavin</option>
-        </select>
-      </div>
-
-    </div>
-
-  </div>
-</div>
 </body>
-</html>

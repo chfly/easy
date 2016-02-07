@@ -4,11 +4,28 @@ var routerApp=angular.module('routerApp',[
 ]);
 
 routerApp.config(function($stateProvider,$urlRouterProvider){
-    $urlRouterProvider.otherwise('/index');
+    $urlRouterProvider.otherwise('/');
     $stateProvider
-        .state('index',{
-            url:'/index',
-            templateUrl:'tpls/loginForm.html'
+        .state('home',{
+            url:'/',
+            views:{
+              '':{templateUrl:'tpls/home.html'},
+              'top@home':{templateUrl:'tpls/top.html'},
+              'main@home':{templateUrl:'tpls/welcome.html'}
+            }
         })
+      .state('home.list',{
+        url:'/list',
+        views:{
+          'main@home':{templateUrl:'tpls/bookType.html'}
+
+        }
+      })
+      .state('home.list.detail',{
+        url:'/detail/:id',
+        views:{
+          '':{templateUrl:'tpls/bookGrid.html'},
+        }
+      })
 
 })
