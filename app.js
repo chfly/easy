@@ -32,6 +32,7 @@ app.use('/react', routes);
 app.use('/angular', routes);
 app.use('/commitComment', routes);
 app.use('/getComments', routes);
+app.use('/test', routes);
 
 
 /*test*/

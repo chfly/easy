@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Easy</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8"/>
+    <title>跨文档消息传输示例主文档</title>
 </head>
 <body>
-<h1 style="margin-top: 200px;text-align: center">WELCOME TO <%= title%></h1>
+<header>
+    <h1>跨域通信示例</h1>
+    <button id="btn">按钮</button>
+</header>
+<iframe id="iframeContent" width="400" src="http://localhost:3000/test.html"></iframe>
+<script type="text/javascript">
+
+    var tt = 'aa';
+    function test(){
+        alert(tt);
+        var tt = 'dd';
+        alert(tt);
+    }
+    test();
+
+</script>
 </body>
 </html>

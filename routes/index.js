@@ -7,6 +7,11 @@ var ReactDOMServer=require('react-dom/server');
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'EASY' });
 });
+/**************************************test******************************************/
+router.get('/test', function(req, res, next) {
+    //res.writeHead('Access-Control-Allow-Origin:')
+    res.render('test');
+});
 /**************************************获取评论数据******************************************/
 router.get('/getComments', function(req, res, next) {
     var Comment=db.getDoc('comment');

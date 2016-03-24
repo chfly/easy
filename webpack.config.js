@@ -10,14 +10,14 @@ var ExtractTextPlugin=require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin=require('html-webpack-plugin');
 var debug=true;
 var url='http://localhost';
-var entryConfig=[];
+var entryConfig;
 var output={};
 var plugin=[];
 if(debug){
     entryConfig=
         {
             //react entry file
-            react: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/react.js'],
+            react: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/react/entry/entryWebpack/test.js'],
 
             //angular entry file
             //angular: ['webpack/hot/dev-server','webpack-dev-server/client?http://localhost:8080/','./src/angular/entry/angular.js'],

@@ -1,4 +1,10 @@
 #node -v4.2.6 ;npm -v3.5.1
+#npm start 启动脚本
+#npm run dev
+#npm run hot
+#webpack --watch 监听变动并自动打包
+#webpack -p  压缩混淆脚本
+#webpack -d 生产map映射
 #jsx -w src/admin/entry src/admin/entrybuild/
 #E:\mongodb\bin\mongod --dbpath e:\mongodb\db --logpath e:\mongodb\logs\mongodb.log --logappend
 #app env
