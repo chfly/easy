@@ -18,4 +18,5 @@
 #8¡¢ionic emulate android/ios
 #9¡¢ionic build android/ios  
 
-
+C:\Users\Administrator\AppData\Roaming\npm\node_modules
+E:\mongodb\bin;
